@@ -1,10 +1,10 @@
-package login;
+package authenticate;
 import com.mongodb.*;
 
 
 public class LoginCheck {
 
-    public static int CustomerLoginCheck(String email, String password) {
+    public static int checkCustomerLogin(String email, String password) {
 
         int login;
 
@@ -29,7 +29,7 @@ public class LoginCheck {
 
     }
 
-    public static int VendorLoginCheck(String email, String password){
+    public static int checkVendorLogin(String email, String password){
 
         int login;
 

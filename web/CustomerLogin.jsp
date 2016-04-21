@@ -7,7 +7,7 @@
 <body>
 <h1>Hungry Panda</h1>
 <center><h2>Customer - Sign In</h2>
-    <form action="CustomerLoginCheck.jsp" method="post">
+    <form method="post" action="CustomerLoginCheck.jsp">
         <br/>Email:<input type="text" name="email">
         <br/>
         <br/>Password:<input type="password" name="password">
