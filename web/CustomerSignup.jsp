@@ -10,11 +10,11 @@
     <form action="CustomerSignupDetails.jsp" method="post">
         <br/>Name:<input type="text" name="name">
         <br/>
-        <br/>Email:<input type="text" name="email">
+        <br/>Username:<input type="text" name="username">
         <br/>
         <br/>Password:<input type="password" name="password">
         <br/>
-        <br/>Mobile Number:<input type="text" name="mobile">
+        <br/>Mobile Number:<input type="number" name="mobile">
         <br/>
         <br/>Room:<input type="text" name="room">
         <br/>

@@ -8,7 +8,7 @@
 <h1>Hungry Panda</h1>
 <center> <h2>Vendor - Sign In</h2>
     <form action="VendorLoginCheck.jsp" method="post">
-        <br/>Email:<input type="text" name="email">
+        <br/>Username:<input type="text" name="username">
         <br/>
         <br/>Password:<input type="password" name="password">
         <br/>

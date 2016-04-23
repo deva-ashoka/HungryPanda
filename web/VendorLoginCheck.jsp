@@ -1,17 +1,17 @@
 <%@page import="authenticate.*" %>
 <%@page contentType="text/html" language="java" pageEncoding="UTF-8" %>
 <%
-    String emailCheck = request.getParameter("email");
+    String usernameCheck = request.getParameter("username");
     String passwordCheck = request.getParameter("password");
 
-    if (emailCheck == "" || passwordCheck == "") { %>
+    if (usernameCheck == "" || passwordCheck == "") { %>
 <script> alert("Please enter both the details");</script>
 <%
     } else {
-        int pass = LoginCheck.checkVendorLogin(emailCheck, passwordCheck);
+        int pass = LoginCheck.checkVendorLogin(usernameCheck, passwordCheck);
 
         if (pass == 1) {
-            session.setAttribute("sessionVendor", emailCheck);
+            session.setAttribute("sessionVendor", usernameCheck);
             response.sendRedirect("VendorHome.jsp");
         } else
             response.sendRedirect("Error.jsp");

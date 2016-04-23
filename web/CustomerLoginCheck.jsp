@@ -1,24 +1,24 @@
 <%@page contentType="text/html" language="java" pageEncoding="UTF-8" %>
 <%@page import="authenticate.*" %>
+<html>
 <%
-    String emailCheck = request.getParameter("email");
+    String usernameCheck = request.getParameter("username");
     String passwordCheck = request.getParameter("password");
 
-    if (emailCheck == "" || passwordCheck == "") { %>
+    if (usernameCheck == "" || passwordCheck == "") { %>
         <script> alert("Please enter both the details");</script>
 <%
     } else {
 
-        int pass = LoginCheck.checkCustomerLogin(emailCheck, passwordCheck);
+        int pass = LoginCheck.checkCustomerLogin(usernameCheck, passwordCheck);
 
         if (pass == 1) {
-            session.setAttribute("sessionCustomer", emailCheck);
+            session.setAttribute("sessionCustomer", usernameCheck);
             response.sendRedirect("CustomerHome.jsp");
         } else
             response.sendRedirect("Error.jsp");
     }
 %>
-<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Sign In</title>

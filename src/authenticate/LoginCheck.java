@@ -4,17 +4,20 @@ import com.mongodb.*;
 
 public class LoginCheck {
 
-    public static int checkCustomerLogin(String email, String password) {
+
+    public static int checkCustomerLogin(String username, String password) {
 
         int login;
+        String hashPassword = PasswordEncryption.MD5(password);
+
 
         Mongo client = new Mongo();
         DB database = client.getDB("Login");
         DBCollection customerCollection = database.getCollection("Customers");
         BasicDBObject query = new BasicDBObject();
 
-        query.put("Email", email);
-        query.put("Password", password);
+        query.put("Username", username);
+        query.put("Password", hashPassword);
 
         BasicDBObject where = new BasicDBObject();
         where.put("$and", query);
@@ -29,17 +32,19 @@ public class LoginCheck {
 
     }
 
-    public static int checkVendorLogin(String email, String password){
+    public static int checkVendorLogin(String username, String password){
 
         int login;
+        String hashPassword = PasswordEncryption.MD5(password);
+
 
         Mongo client = new Mongo();
         DB database = client.getDB("Login");
         DBCollection vendorCollection = database.getCollection("Vendors");
         BasicDBObject query=new BasicDBObject();
 
-        query.put("Email", email);
-        query.put("Password", password);
+        query.put("Username", username);
+        query.put("Password", hashPassword);
 
         BasicDBObject where=new BasicDBObject();
         where.put("$and", query);
