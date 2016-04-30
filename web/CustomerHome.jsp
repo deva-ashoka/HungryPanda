@@ -27,7 +27,7 @@
             while (outletItr.hasNext()) {
                 String outlet = outletItr.next();
         %>
-        <br/> <input type="submit" value="<%=outlet%>">
+        <br/> <input type="submit" name ="selectedOutlet" value="<%=outlet%>">
         <br/>
         <%
                 i++;

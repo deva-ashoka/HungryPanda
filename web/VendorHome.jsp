@@ -29,8 +29,8 @@
             ArrayList menuPrices = Vendor.getItemPrices(sessionOutletString);
             Iterator<String> menuPriceItr = menuPrices.iterator();
             int i = 1;
-            while (menuItr.hasNext()) {
-                while (menuPriceItr.hasNext()) {
+            while (menuItr.hasNext() && menuPriceItr.hasNext()) {
+
                     String itemName = menuItr.next();
                     String itemPrice = menuPriceItr.next();
                     String item = itemName + " - " + "₹" + itemPrice;
@@ -39,7 +39,6 @@
         <%
                     out.println(i + " . " + item);
                     i++;
-                }
             }
         %>
         <br/>
