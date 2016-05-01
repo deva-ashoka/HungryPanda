@@ -1,5 +1,5 @@
 <%@ page import="process.Customer" %>
-<%@page contentType="text/html" pageEncoding="UTF-8" language="java" errorPage="Error.jsp"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" language="java" errorPage="Error.jsp" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Iterator" %>
 <html>
@@ -9,30 +9,34 @@
 </head>
 <body>
 <center>
-    <h2>
-        <% String sessionCustomerString=session.getAttribute("sessionCustomer").toString();
-            out.println("Hello "+sessionCustomerString);
+    <form action="CustomerOrder.jsp" method="post">
+        <h2>
+            <% String sessionCustomerString = session.getAttribute("sessionCustomer").toString();
+                out.println("Hello " + sessionCustomerString);
+            %>
+        </h2>
+        <br/>
+        <h3>
+            Please select the outlet:
+        </h3>
+        <br/>
+        <%
+            ArrayList outlets = Customer.getOutlets();
+            Iterator<String> outletItr = outlets.iterator();
+            int i = 1;
+            while (outletItr.hasNext()) {
+                String outlet = outletItr.next();
         %>
-    </h2>
-    <br/>
-    <h3>
-        Please select the outlet:
-    </h3>
-    <br/>
-    <%
-        ArrayList outlets = Customer.getOutlets();
-        Iterator<String> outletItr = outlets.iterator();
-        int i = 1;
-        while (outletItr.hasNext()) {
-            String outlet = outletItr.next();
-    %>
-    <br/> <a href="CustomerOrder.jsp"> <% out.println(outlet); %> </a>
-    <%
-            i++;
-        }
-    %>
-    <br/>
-    <a href="Logout.jsp">Logout</a>
+        <br/> <input type="submit" name ="selectedOutlet" value="<%=outlet%>">
+        <br/>
+        <%
+                i++;
+            }
+        %>
+        <br/>
+        <br/>
+        <a href="Logout.jsp">Logout</a>
+    </form>
 </center>
 </body>
 </html>

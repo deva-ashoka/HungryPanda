@@ -9,7 +9,6 @@ public class Customer {
     public static ArrayList getOutlets() {
 
 
-        //  try {
         Mongo client = new Mongo();
         DB database = client.getDB("Login");
         DBCollection vendorCollection = database.getCollection("Vendors");
@@ -27,4 +26,5 @@ public class Customer {
         return outletArr;
 
     }
+
 }
