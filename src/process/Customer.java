@@ -6,6 +6,18 @@ import java.util.ArrayList;
 
 public class Customer {
 
+    static int totalBill = 0;
+
+    public static int getEachItemTotal(int price, int quantity){
+        int eachItemTotal = price*quantity;
+        return eachItemTotal;
+    }
+
+    public static  int getTotalBill(int addToTotalBill){
+        totalBill += addToTotalBill;
+        return totalBill;
+    }
+
     public static ArrayList getOutlets() {
 
 

@@ -6,40 +6,33 @@
 <html>
 <head>
     <title></title>
-
-
-    <%//printing the menu of the selected Outlet
-        String selectedOutlet = request.getParameter("selectedOutlet");
-        ArrayList printItemNames = new ArrayList();
-        ArrayList printMenuPrice = new ArrayList();
-        printItemNames = Vendor.getItemNames(selectedOutlet);
-        printMenuPrice = Vendor.getItemPrices(selectedOutlet);
-        Iterator<String> itemNameItr = printItemNames.iterator();
-        Iterator<String> menuPriceItr = printMenuPrice.iterator();%>
-    <!-- to get the tick boxes -->
-
-    <form action="CustomerOrderConfirm.jsp" method ="post">
-    <%
-        int totalOrder=0;
-        while (itemNameItr.hasNext() && menuPriceItr.hasNext()) { %>
-            <input type="checkbox" name="itemName" value="<%=itemNameItr%>">
-        <%
-                out.println(itemNameItr.next());
-                out.println(" - " + "₹" + menuPriceItr.next());
-                %>
-        <input type="number" name="quantity" value="" min="1" max="100">
-        <br>
-        <%
-            } %>
-        <input type = "submit" value="Place Order">
-
-
-    </form>
-
-
-
 </head>
 <body>
+<form action="CustomerOrderConfirm.jsp" method="post">
+    <%
+        //printing the menu of the selected Outlet
+        String selectedOutlet = request.getParameter("selectedOutlet");
 
+        ArrayList itemNames = Vendor.getItemNames(selectedOutlet);
+        Iterator<String> itemNameItr = itemNames.iterator();
+
+        ArrayList itemPrices = Vendor.getItemPrices(selectedOutlet);
+        Iterator<String> itemPriceItr = itemPrices.iterator();
+
+        while (itemNameItr.hasNext() && itemPriceItr.hasNext()) {
+            String itemName = itemNameItr.next();
+            String itemPrice = itemPriceItr.next();
+            String item = itemName + " - " + "₹" + itemPrice;
+    %>
+    <!-- to get the tick boxes -->
+    <input type="checkbox" name="items" value="<%=itemName%>.<%=itemPrice%>">
+    <label for="option-<%=itemName%>.<%=itemPrice%>"> <% out.println(item);%> </label>
+    <input type="number" name = "<%=itemName%>">
+    <br/>
+    <%
+        }
+    %>
+    <input type="submit" value="Place Order">
+</form>
 </body>
 </html>
