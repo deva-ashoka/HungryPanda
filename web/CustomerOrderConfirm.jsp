@@ -1,5 +1,8 @@
 <%@ page import="process.Customer" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="process.Vendor" %>
+<%@ page import="java.lang.reflect.Array" %>
+<%@ page import="org.bson.BsonReader" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -10,6 +13,12 @@
     Your Order:
 </h2>
 <%
+    String sessionSelectedOutlet = session.getAttribute("sessionSelectedOutlet").toString();
+
+    String sessionCustomerName = session.getAttribute("sessionCustomerName").toString();
+    String sessionCustomerMobile = session.getAttribute("sessionCustomerMobile").toString();
+    String userDetails = sessionCustomerName + ", " + sessionCustomerMobile;
+
     String[] values = request.getParameterValues("items");
     int totalBill = 0;
     ArrayList<String> itemNamesOrder = new ArrayList();
@@ -39,6 +48,7 @@
 
             totalBill = Customer.getTotalBill(itemTotal);
         }
+        Vendor.addToVendorOrders(sessionSelectedOutlet, userDetails, itemNamesOrder, itemPricesOrder, qty, itemTotal, totalBill);
     }
 %>
 <br/>
@@ -50,6 +60,6 @@
 <br/>
 <br/>
 <br/>
-<input type="submit" value="Confirm Order">
+<h3>Order Successfully placed!</h3>
 </body>
 </html>

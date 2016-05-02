@@ -11,8 +11,14 @@
 <center>
     <form action="CustomerOrder.jsp" method="post">
         <h2>
-            <% String sessionCustomerString = session.getAttribute("sessionCustomer").toString();
-                out.println("Hello " + sessionCustomerString);
+            <%
+                String sessionCustomerString = session.getAttribute("sessionCustomer").toString();
+                String customerName = Customer.getName(sessionCustomerString);
+                String customerMobile = Customer.getMobile(sessionCustomerString);
+                session.setAttribute("sessionCustomerName", customerName);
+                session.setAttribute("sessionCustomerMobile", customerMobile);
+
+                out.println("Hello " + customerName);
             %>
         </h2>
         <br/>
