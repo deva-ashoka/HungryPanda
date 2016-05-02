@@ -1,4 +1,5 @@
 <%@ page import="process.Customer" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -11,6 +12,11 @@
 <%
     String[] values = request.getParameterValues("items");
     int totalBill = 0;
+    ArrayList<String> itemNamesOrder = new ArrayList();
+    ArrayList<Integer> itemPricesOrder = new ArrayList();
+    ArrayList<Integer> qty = new ArrayList();
+    ArrayList<Integer> itemTotal = new ArrayList();
+
     if (values != null) {
         for (String val : values) {
             String[] splitNamePrice = val.split("\\.");
@@ -20,6 +26,10 @@
             int quantity = Integer.parseInt(quantityString);
             int itemPrice = Integer.parseInt(itemPriceString);
             int eachItemTotal = Customer.getEachItemTotal(itemPrice, quantity);
+            itemNamesOrder.add(itemName);
+            itemPricesOrder.add(itemPrice);
+            qty.add(quantity);
+            itemTotal.add(eachItemTotal);
 %>
 <br/>
 <%
@@ -27,7 +37,7 @@
             out.println("Quantity ordered = " + quantity);
             out.println(" Total amount for " + itemName + " = ₹" + eachItemTotal);
 
-            totalBill = Customer.getTotalBill(eachItemTotal);
+            totalBill = Customer.getTotalBill(itemTotal);
         }
     }
 %>
