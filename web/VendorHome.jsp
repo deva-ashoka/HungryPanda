@@ -12,8 +12,12 @@
     <h2>
         <%
             String sessionVendorString = session.getAttribute("sessionVendor").toString();
-            out.println("Hello " + sessionVendorString);
-            String sessionOutletString = Vendor.getOutletName(sessionVendorString);
+            String vendorName = Vendor.getVendorName(sessionVendorString);
+            String outletName = Vendor.getOutletName(sessionVendorString);
+
+            out.println("Hello " + vendorName);
+
+
         %>
         <br/>
         <br/>
@@ -24,26 +28,29 @@
         </form>
         <br/>
         <%
-            ArrayList menuItemNames = Vendor.getItemNames(sessionOutletString);
+            ArrayList menuItemNames = Vendor.getItemNames(outletName);
             Iterator<String> menuItr = menuItemNames.iterator();
-            ArrayList menuPrices = Vendor.getItemPrices(sessionOutletString);
+            ArrayList menuPrices = Vendor.getItemPrices(outletName);
             Iterator<String> menuPriceItr = menuPrices.iterator();
             int i = 1;
             while (menuItr.hasNext() && menuPriceItr.hasNext()) {
 
-                    String itemName = menuItr.next();
-                    String itemPrice = menuPriceItr.next();
-                    String item = itemName + " - " + "₹" + itemPrice;
+                String itemName = menuItr.next();
+                String itemPrice = menuPriceItr.next();
+                String item = itemName + " - " + "₹" + itemPrice;
         %>
         <br/>
         <%
-                    out.println(i + " . " + item);
-                    i++;
+                out.println(i + " . " + item);
+                i++;
             }
         %>
         <br/>
         <br/>
+
     </h2>
+    <a href="VendorOrders.jsp">Orders</a>
+<br/>
     <a href="Logout.jsp">Logout</a>
 </center>
 </body>

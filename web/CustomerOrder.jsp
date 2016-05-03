@@ -12,6 +12,7 @@
     <%
         //printing the menu of the selected Outlet
         String selectedOutlet = request.getParameter("selectedOutlet");
+        session.setAttribute("sessionSelectedOutlet", selectedOutlet);
 
         ArrayList itemNames = Vendor.getItemNames(selectedOutlet);
         Iterator<String> itemNameItr = itemNames.iterator();

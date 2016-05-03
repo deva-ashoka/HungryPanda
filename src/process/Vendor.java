@@ -6,6 +6,15 @@ import java.util.ArrayList;
 
 public class Vendor {
 
+    public static void addToVendorOrders(String selectedOutlet, String customer, ArrayList<String> itemName, ArrayList<Integer> itemPrice, ArrayList<Integer> quantity, ArrayList<Integer> itemTotal, int totalBill) {
+        Mongo client = new Mongo();
+        DB database = client.getDB("global");
+        DBCollection vendorOrderCollection = database.getCollection(selectedOutlet+"Orders");
+
+        BasicDBObject presentOrder = new BasicDBObject("Customer Details", customer).append("Item Name", itemName).append("Item Price", itemPrice).append("Quantity", quantity).append("Item Total", itemTotal).append("Total Bill", totalBill);
+        vendorOrderCollection.insert(presentOrder);
+    }
+
     public static String getOutletName (String username) {
 
         String outletName;
@@ -20,6 +29,22 @@ public class Vendor {
         outletName = where.get("Outlet").toString();
 
         return outletName;
+    }
+
+    public static String getVendorName (String username) {
+
+        String vendorName;
+
+        Mongo client = new Mongo();
+        DB database = client.getDB("Login");
+        DBCollection customerCollection = database.getCollection("Vendors");
+
+        DBObject query = new BasicDBObject("Username", username);
+        DBObject where = customerCollection.findOne(query);
+
+        vendorName = where.get("Name").toString();
+
+        return vendorName;
     }
 
     public static ArrayList getItemNames(String outletName) {
@@ -71,6 +96,5 @@ public class Vendor {
     }
 
 }
-//  } catch(Exception e){
-//  System.err.println("Error");
+
 

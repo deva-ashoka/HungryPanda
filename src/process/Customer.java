@@ -7,6 +7,38 @@ import java.util.Iterator;
 
 public class Customer {
 
+    public static String getName (String username) {
+
+        String name;
+
+        Mongo client = new Mongo();
+        DB database = client.getDB("Login");
+        DBCollection customerCollection = database.getCollection("Customers");
+
+        DBObject query = new BasicDBObject("Username", username);
+        DBObject where = customerCollection.findOne(query);
+
+        name = where.get("Name").toString();
+
+        return name;
+    }
+
+    public static String getMobile (String username) {
+
+        String mobile;
+
+        Mongo client = new Mongo();
+        DB database = client.getDB("Login");
+        DBCollection customerCollection = database.getCollection("Customers");
+
+        DBObject query = new BasicDBObject("Username", username);
+        DBObject where = customerCollection.findOne(query);
+
+        mobile = where.get("Mobile").toString();
+
+        return mobile;
+    }
+
 
     public static int getEachItemTotal(int price, int quantity){
         int eachItemTotal = price*quantity;
