@@ -14,7 +14,7 @@
 </h2>
 <%
     String sessionSelectedOutlet = session.getAttribute("sessionSelectedOutlet").toString();
-
+    String sessionCustomerUsername = session.getAttribute("sessionCustomer").toString();
     String sessionCustomerName = session.getAttribute("sessionCustomerName").toString();
     String sessionCustomerMobile = session.getAttribute("sessionCustomerMobile").toString();
     String userDetails = sessionCustomerName + ", " + sessionCustomerMobile;
@@ -49,6 +49,7 @@
             totalBill = Customer.getTotalBill(itemTotal);
         }
         Vendor.addToVendorOrders(sessionSelectedOutlet, userDetails, itemNamesOrder, itemPricesOrder, qty, itemTotal, totalBill);
+        Customer.addToCustomerOrders(sessionCustomerUsername, sessionSelectedOutlet, itemNamesOrder, itemPricesOrder, qty, itemTotal, totalBill);
     }
 %>
 <br/>

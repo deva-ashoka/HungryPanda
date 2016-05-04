@@ -40,6 +40,7 @@
             }
         %>
         <br/>
+        <a href="CustomerOrders.jsp">My Orders</a>
         <br/>
         <a href="Logout.jsp">Logout</a>
     </form>

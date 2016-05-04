@@ -1,6 +1,6 @@
-<%@ page import="com.mongodb.*" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="process.Vendor" %>
+<%@ page import="java.util.Iterator" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -8,55 +8,67 @@
 </head>
 <body>
 <%
-    String sessionVendorString = session.getAttribute("sessionVendor").toString();
-    String sessionOutletName = Vendor.getOutletName(sessionVendorString);
 
+        String sessionVendorString = session.getAttribute("sessionVendor").toString();
+        String sessionOutletName = Vendor.getOutletName(sessionVendorString);
 
-    Mongo client = new Mongo();
-    DB database = client.getDB("global");
-    DBCollection Orders = database.getCollection(sessionOutletName + "Orders");
+        ArrayList<String> customerDetails = Vendor.getVendorOrdersCustomers(sessionOutletName);
+        ArrayList<ArrayList<?>> itemNames = Vendor.getVendorOrdersItemNames(sessionOutletName);
+        ArrayList<ArrayList<?>> itemPrices = Vendor.getVendorOrdersItemPrices(sessionOutletName);
+        ArrayList<ArrayList<?>> quantity = Vendor.getVendorOrdersQuantity(sessionOutletName);
+        ArrayList<ArrayList<?>> itemTotals = Vendor.getVendorOrdersItemTotal(sessionOutletName);
+        ArrayList<String> totalBills = Vendor.getVendorOrdersTotalBill(sessionOutletName);
 
-    DBCursor cursorCustomer = Orders.find();
-    DBCursor cursorNames = Orders.find();
-    DBCursor cursorPrices = Orders.find();
-    DBCursor cursorQuantity = Orders.find();
-    DBCursor cursorItemTotal = Orders.find();
-    DBCursor cursorTotalBill = Orders.find();
+        Iterator<String> customerDetailsItr = customerDetails.iterator();
+        Iterator itemNamesItr = itemNames.iterator();
+        Iterator itemPricesItr = itemPrices.iterator();
+        Iterator quantityItr = quantity.iterator();
+        Iterator itemTotalsItr = itemTotals.iterator();
+        Iterator<String> totalBillsItr = totalBills.iterator();
 
+        int orderNumber =1;
 
-    int orderNumber = 1;
-
-    while (cursorCustomer.hasNext() && cursorNames.hasNext() && cursorPrices.hasNext()
-            && cursorQuantity.hasNext() && cursorItemTotal.hasNext() && cursorTotalBill.hasNext()) {
-        out.println(orderNumber + "."); %>
+        while(customerDetailsItr.hasNext() && itemNamesItr.hasNext() && itemPricesItr.hasNext() && quantityItr.hasNext()
+                && itemTotalsItr.hasNext() && totalBillsItr.hasNext()){
+            out.println(orderNumber + "."); %>
 <br/>
 <%
-    String customer = (String) cursorCustomer.next().get("Customer Details");
-    ArrayList<?> itemNames = (BasicDBList) cursorNames.next().get("Item Name");
-    ArrayList<?> itemPrices = (BasicDBList) cursorPrices.next().get("Item Price");
-    ArrayList<?> quantity = (BasicDBList) cursorQuantity.next().get("Quantity");
-    ArrayList<?> itemTotal = (BasicDBList) cursorItemTotal.next().get("Item Total");
-    String totalBill = cursorTotalBill.next().get("Total Bill").toString();
-
-
+    String customer = customerDetailsItr.next();
     out.println("Ordered by: " + customer); %>
 <br/>
 <%
 
-    for (int i = 0; i < itemNames.size(); i++) {
-        out.println(itemNames.get(i) +
-                " - ₹" + itemPrices.get(i).toString() +
-                " :: Quanttity Ordered = " + quantity.get(i).toString() +
-                " :: Total amount for " + itemNames.get(i) + " = ₹" + itemTotal.get(i).toString()); %>
+    ArrayList<?> namesInEachOrder = (ArrayList<?>)itemNamesItr.next();
+    Iterator namesInEachOrderItr = namesInEachOrder.iterator();
+
+    ArrayList<?> pricesInEachOrder = (ArrayList<?>)itemPricesItr.next();
+    Iterator pricesInEachOrderItr = pricesInEachOrder.iterator();
+
+    ArrayList<?> quantityInEachOrder = (ArrayList<?>)quantityItr.next();
+    Iterator quantityInEachOrderItr = quantityInEachOrder.iterator();
+
+    ArrayList<?> itemTotalInEachOrder = (ArrayList<?>)itemTotalsItr.next();
+    Iterator itemTotalInEachOrderItr = itemTotalInEachOrder.iterator();
+
+    while(namesInEachOrderItr.hasNext() && pricesInEachOrderItr.hasNext() && quantityInEachOrderItr.hasNext()
+            && itemTotalInEachOrderItr.hasNext()){
+        String name = namesInEachOrderItr.next().toString();
+        String price = pricesInEachOrderItr.next().toString();
+        String qty = quantityInEachOrderItr.next().toString();
+        String totalForItem = itemTotalInEachOrderItr.next().toString();
+
+        out.println(name + " - ₹" + price + " :: Quantity = " + qty + " :: Total for " + name + " = ₹" + totalForItem); %>
 <br/>
 <%
     }
-    out.println("Total bill for the order = ₹" + totalBill);
-    orderNumber++; %>
+    String totalBill = totalBillsItr.next();
+    out.println("Total Bill = ₹" + totalBill); %>
 <br/>
 <br/>
 <%
-    }
+            orderNumber++;
+        }
+
 %>
 </body>
 </html>

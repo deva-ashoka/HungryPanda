@@ -11,6 +11,7 @@
 <center>
     <h2>
         <%
+
             String sessionVendorString = session.getAttribute("sessionVendor").toString();
             String vendorName = Vendor.getVendorName(sessionVendorString);
             String outletName = Vendor.getOutletName(sessionVendorString);
