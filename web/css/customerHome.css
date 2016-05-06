@@ -1,0 +1,60 @@
+.jumbotron {
+  background-image:url('http://www.coronaleaf.com/images/bg-main.jpg');
+  height:655px;
+  background-repeat: repeat;
+  background-size:cover;
+
+}
+
+
+.jumbotron h1 {
+  font-size: 50px;
+  font-family: 'Shift', cursive;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.57);
+}
+
+.jumbotron h2 {
+    position: relative;
+    font-size: 35px;
+    font-family: 'Shift', cursive;
+    font-weight: bold;
+    color: inherit;
+}
+
+input[type=submit] {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.57);
+    color:white;
+    font-size: 20px;
+    -moz-border-radius:10px; /* Firefox */
+    -webkit-border-radius: 10px; /* Safari, Chrome */
+    -khtml-border-radius: 10px; /* KHTML */
+    border-radius: 10px; /* CSS3 */
+    padding: 2px 6px 2px 6px;
+    border-color: white;
+    border-style:solid;
+}
+.jumbotron a{
+    position:relative;
+    top: -480px;
+    right:-500px;
+    background-color: rgba(0, 0, 0, 0.57);
+    display:inline;
+    font-size: 22px;
+    font-family: 'Shift', cursive;
+    color: white;
+    font-family: 'Shift', cursive;
+    font: inherit 20px Arial;
+    text-decoration: blink;
+    padding: 6px 6px 2px 6px;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #CCCCCC;
+    border-radius: 14px;
+}
+
+
+
+

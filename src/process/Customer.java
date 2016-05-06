@@ -5,7 +5,7 @@ import com.mongodb.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Customer {
+public class Customer  {
 
     public static ArrayList<String> getCustomersOrdersOutlets(String username) {
 

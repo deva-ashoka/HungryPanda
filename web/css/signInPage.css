@@ -1,0 +1,35 @@
+.jumbotron {
+  background-image:url('http://4hdwallpapers.com/wp-content/uploads/2013/03/Vector-Art-Flower-Leaf.jpg');
+  height:655px;
+  background-repeat: no-repeat;
+  background-size:cover;
+
+}
+
+.jumbotron .container {
+  position: relative;
+  top:15px;
+}
+
+.jumbotron .container h1 {
+  color: rgba(0, 0, 0, 0.57);
+  font-size: 75px;
+  font-family: 'Shift', cursive;
+  font-weight: bold;
+}
+
+.jumbotron .nav h2 {
+    font-size: 30px;
+    font-family: 'Shift', cursive;
+    position: relative;
+    top: 20px;
+}
+
+.jumbotron .nav {
+    font-family: 'Shift', cursive;
+
+}
+
+
+
+
