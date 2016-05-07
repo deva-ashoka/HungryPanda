@@ -2,15 +2,34 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet" >
+    <link href="css/index.css" rel="stylesheet" >
     <title>Sign In</title>
 </head>
 <body>
-<h1>Hungry Panda</h1>
-<center> <h3>Please Select:</h3>
-         <br/><a href="VendorLogin.jsp">Vendor</a>
-         <br/>
-         <br/>
-         <br/><a href="CustomerLogin.jsp">Customer</a>
-</center>
+
+    <div class = "jumbotron" >
+        <div class = "container">
+            <h1>Hungry Panda</h1>
+        </div>
+        <div>
+            <div class = "nav">
+                <div class = "container" >
+                    <div class = "center-block">
+                        <li/><a href="VendorLogin.jsp">Vendor</a></li>
+                        <li/><br/><a href="CustomerLogin.jsp">Customer</a></li>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
 </body>
 </html>
