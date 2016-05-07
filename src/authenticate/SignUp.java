@@ -3,12 +3,14 @@ import com.mongodb.*;
 
 public class SignUp {
 
+    static Mongo client = new Mongo();
+    static DB database = client.getDB("Login");
+
     public static void signUpVendor(String name, String username, String password, String mobile, String outletName){
+
 
         String hashPassword = PasswordEncryption.MD5(password);
 
-        Mongo client = new Mongo();
-        DB database = client.getDB("Login");
         DBCollection vendorCollection = database.getCollection("Vendors");
 
         BasicDBObject details = new BasicDBObject("Name", name).append("Username", username).append("Password", hashPassword).append("Mobile", mobile).append("Outlet", outletName);
@@ -20,8 +22,6 @@ public class SignUp {
 
         boolean check;
 
-        Mongo client = new Mongo();
-        DB database = client.getDB("Login");
         DBCollection vendorCollection = database.getCollection("Vendors");
 
         DBObject query = new BasicDBObject("Username", username);
@@ -39,8 +39,6 @@ public class SignUp {
 
         String hashPassword = PasswordEncryption.MD5(password);
 
-        Mongo client = new Mongo();
-        DB database = client.getDB("Login");
         DBCollection customerCollection = database.getCollection("Customers");
 
         BasicDBObject details = new BasicDBObject("Name", name).append("Username", username).append("Password", hashPassword).append("Mobile", mobile).append("Room",room);
@@ -52,8 +50,6 @@ public class SignUp {
 
         boolean check;
 
-        Mongo client = new Mongo();
-        DB database = client.getDB("Login");
         DBCollection customerCollection = database.getCollection("Customers");
 
         DBObject query = new BasicDBObject("Username", username);

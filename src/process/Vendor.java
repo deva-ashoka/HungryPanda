@@ -1,16 +1,73 @@
 package process;
 
 import com.mongodb.*;
+import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
 
 public class Vendor {
 
+    static Mongo client = new Mongo();
+    static DB database = client.getDB("global");
+    static DB databaseLogin = client.getDB("Login");
+
+
+    public static void changeStatus(String customerUsername, String orderID) {
+
+        DBCollection Orders = database.getCollection(customerUsername + "MyOrders");
+
+        DBObject query = new BasicDBObject("_id", new ObjectId(orderID));
+        DBObject update = new BasicDBObject();
+        update.put("$set", new BasicDBObject("Status","Ready"));
+
+        Orders.update(query, update);
+    }
+
+    public static ArrayList<String> getVendorOrdersDeliveryStatus(String sessionOutletName) {
+
+        DBCollection Orders = database.getCollection(sessionOutletName + "Orders");
+        DBCursor cursorStatus = Orders.find();
+
+        ArrayList<String> deliveryStatusArr = new ArrayList<>();
+
+        while (cursorStatus.hasNext()) {
+            String customer = (String) cursorStatus.next().get("Delivery Status");
+            deliveryStatusArr.add(customer);
+        }
+        return deliveryStatusArr;
+    }
+
+    public static ArrayList<String> getVendorOrdersCustomerUsername(String sessionOutletName) {
+
+        DBCollection Orders = database.getCollection(sessionOutletName + "Orders");
+        DBCursor cursorCustomerUsername = Orders.find();
+
+        ArrayList<String> customerUsernameArr = new ArrayList<>();
+
+        while (cursorCustomerUsername.hasNext()) {
+            String customer = (String) cursorCustomerUsername.next().get("Customer Username");
+            customerUsernameArr.add(customer);
+        }
+        return customerUsernameArr;
+    }
+
+    public static ArrayList<String> getVendorOrdersOrderID(String sessionOutletName) {
+
+        DBCollection Orders = database.getCollection(sessionOutletName + "Orders");
+        DBCursor cursorOrderID = Orders.find();
+
+        ArrayList<String> orderIDArr = new ArrayList<>();
+
+        while (cursorOrderID.hasNext()) {
+            String customer = (String) cursorOrderID.next().get("Order ID");
+            orderIDArr.add(customer);
+        }
+        return orderIDArr;
+    }
+
 
     public static ArrayList<String> getVendorOrdersCustomers(String sessionOutletName) {
 
-        Mongo client = new Mongo();
-        DB database = client.getDB("global");
         DBCollection Orders = database.getCollection(sessionOutletName + "Orders");
         DBCursor cursorCustomer = Orders.find();
 
@@ -25,8 +82,6 @@ public class Vendor {
 
     public static ArrayList<ArrayList<?>> getVendorOrdersItemNames(String sessionOutletName) {
 
-        Mongo client = new Mongo();
-        DB database = client.getDB("global");
         DBCollection Orders = database.getCollection(sessionOutletName + "Orders");
         DBCursor cursorNames = Orders.find();
 
@@ -41,8 +96,6 @@ public class Vendor {
 
     public static ArrayList<ArrayList<?>> getVendorOrdersItemPrices(String sessionOutletName) {
 
-        Mongo client = new Mongo();
-        DB database = client.getDB("global");
         DBCollection Orders = database.getCollection(sessionOutletName + "Orders");
         DBCursor cursorPrices = Orders.find();
 
@@ -57,8 +110,6 @@ public class Vendor {
 
     public static ArrayList<ArrayList<?>> getVendorOrdersQuantity(String sessionOutletName) {
 
-        Mongo client = new Mongo();
-        DB database = client.getDB("global");
         DBCollection Orders = database.getCollection(sessionOutletName + "Orders");
         DBCursor cursorQuantity = Orders.find();
 
@@ -73,8 +124,6 @@ public class Vendor {
 
     public static ArrayList<ArrayList<?>> getVendorOrdersItemTotal(String sessionOutletName) {
 
-        Mongo client = new Mongo();
-        DB database = client.getDB("global");
         DBCollection Orders = database.getCollection(sessionOutletName + "Orders");
         DBCursor cursorItemTotal = Orders.find();
 
@@ -89,8 +138,6 @@ public class Vendor {
 
     public static ArrayList<String> getVendorOrdersTotalBill(String sessionOutletName) {
 
-        Mongo client = new Mongo();
-        DB database = client.getDB("global");
         DBCollection Orders = database.getCollection(sessionOutletName + "Orders");
         DBCursor cursorTotalBill = Orders.find();
 
@@ -104,22 +151,20 @@ public class Vendor {
     }
 
 
-    public static void addToVendorOrders(String selectedOutlet, String customer, ArrayList<String> itemName, ArrayList<Integer> itemPrice, ArrayList<Integer> quantity, ArrayList<Integer> itemTotal, int totalBill) {
-        Mongo client = new Mongo();
-        DB database = client.getDB("global");
+    public static void addToVendorOrders(String selectedOutlet, String customerUsername, String orderID, String customer, ArrayList<String> itemName, ArrayList<Integer> itemPrice, ArrayList<Integer> quantity, ArrayList<Integer> itemTotal, int totalBill) {
+
         DBCollection vendorOrderCollection = database.getCollection(selectedOutlet + "Orders");
 
-        BasicDBObject presentOrder = new BasicDBObject("Customer Details", customer).append("Item Name", itemName).append("Item Price", itemPrice).append("Quantity", quantity).append("Item Total", itemTotal).append("Total Bill", totalBill);
+        BasicDBObject presentOrder = new BasicDBObject("Customer Username", customerUsername).append("Order ID", orderID).append("Customer Details", customer).append("Item Name", itemName).append("Item Price", itemPrice).append("Quantity", quantity).append("Item Total", itemTotal).append("Total Bill", totalBill).append("Delivery Status", "Not Received");
         vendorOrderCollection.insert(presentOrder);
+
     }
 
     public static String getOutletName(String username) {
 
         String outletName;
 
-        Mongo client = new Mongo();
-        DB database = client.getDB("Login");
-        DBCollection customerCollection = database.getCollection("Vendors");
+        DBCollection customerCollection = databaseLogin.getCollection("Vendors");
 
         DBObject query = new BasicDBObject("Username", username);
         DBObject where = customerCollection.findOne(query);
@@ -133,9 +178,7 @@ public class Vendor {
 
         String vendorName;
 
-        Mongo client = new Mongo();
-        DB database = client.getDB("Login");
-        DBCollection customerCollection = database.getCollection("Vendors");
+        DBCollection customerCollection = databaseLogin.getCollection("Vendors");
 
         DBObject query = new BasicDBObject("Username", username);
         DBObject where = customerCollection.findOne(query);
@@ -147,9 +190,6 @@ public class Vendor {
 
     public static ArrayList getItemNames(String outletName) {
 
-
-        Mongo client = new Mongo();
-        DB database = client.getDB("global");
         DBCollection Menu = database.getCollection(outletName + "menu");
 
         BasicDBObject queryName = new BasicDBObject();
@@ -166,8 +206,6 @@ public class Vendor {
 
     public static ArrayList getItemPrices(String outletName) {
 
-        Mongo client = new Mongo();
-        DB database = client.getDB("global");
         DBCollection Menu = database.getCollection(outletName + "menu");
 
         BasicDBObject queryPrice = new BasicDBObject();
@@ -184,8 +222,6 @@ public class Vendor {
 
     public static void addToMenu(String itemName, String itemPrice, String outletName) {
 
-        Mongo client = new Mongo();
-        DB database = client.getDB("global");
         DBCollection Menu = database.getCollection(outletName + "menu");
 
         BasicDBObject details = new BasicDBObject("Item Name", itemName).append("Price", itemPrice);

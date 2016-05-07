@@ -4,15 +4,15 @@ import com.mongodb.*;
 
 public class LoginCheck {
 
+    static Mongo client = new Mongo();
+    static DB database = client.getDB("Login");
+
 
     public static int checkCustomerLogin(String username, String password) {
 
         int login;
         String hashPassword = PasswordEncryption.MD5(password);
 
-
-        Mongo client = new Mongo();
-        DB database = client.getDB("Login");
         DBCollection customerCollection = database.getCollection("Customers");
         BasicDBObject query = new BasicDBObject();
 
@@ -37,9 +37,6 @@ public class LoginCheck {
         int login;
         String hashPassword = PasswordEncryption.MD5(password);
 
-
-        Mongo client = new Mongo();
-        DB database = client.getDB("Login");
         DBCollection vendorCollection = database.getCollection("Vendors");
         BasicDBObject query=new BasicDBObject();
 

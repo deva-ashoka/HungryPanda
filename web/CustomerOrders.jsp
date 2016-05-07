@@ -10,6 +10,7 @@
 <body>
             <%
 
+                String vendorOrderID;
                 String sessionCustomerUsername = session.getAttribute("sessionCustomer").toString();
 
                 ArrayList<String> outlets = Customer.getCustomersOrdersOutlets(sessionCustomerUsername);
@@ -18,6 +19,8 @@
                 ArrayList<ArrayList<?>> quantity = Customer.getCustomerOrdersQuantity(sessionCustomerUsername);
                 ArrayList<ArrayList<?>> itemTotals = Customer.getCustomerOrdersItemTotal(sessionCustomerUsername);
                 ArrayList<String> totalBills = Customer.getCustomerOrdersTotalBill(sessionCustomerUsername);
+                ArrayList<String> status = Customer.getOrderStatus(sessionCustomerUsername);
+
 
                 Iterator<String> outletsItr = outlets.iterator();
                 Iterator itemNamesItr = itemNames.iterator();
@@ -25,11 +28,13 @@
                 Iterator quantityItr = quantity.iterator();
                 Iterator itemTotalsItr = itemTotals.iterator();
                 Iterator<String> totalBillsItr = totalBills.iterator();
+                Iterator<String> statusItr = status.iterator();
+
 
                 int orderNumber =1;
 
                 while(outletsItr.hasNext() && itemNamesItr.hasNext() && itemPricesItr.hasNext() && quantityItr.hasNext()
-                        && itemTotalsItr.hasNext() && totalBillsItr.hasNext()){
+                        && itemTotalsItr.hasNext() && totalBillsItr.hasNext() && statusItr.hasNext()){
                     out.println(orderNumber + "."); %>
             <br/>
             <%
@@ -64,7 +69,18 @@
                 String totalBill = totalBillsItr.next();
                 out.println("Total Bill = ₹" + totalBill); %>
             <br/>
+            <%
+                String orderStatus = statusItr.next();
+                out.println("Order Status: " + orderStatus);
+
+                    vendorOrderID = session.getAttribute("vendorOrderID").toString();
+            %>
             <br/>
+            <form method="post" action="CustomerChangeStatus.jsp">
+                <input type ="hidden" name="outletName" value = "<%=outlet%>">
+                <input type ="hidden" name="vendorOrderID" value = "<%=vendorOrderID%>">
+            <input type="submit" value="Received">
+            </form>
             <%
                     orderNumber++;
                 }
