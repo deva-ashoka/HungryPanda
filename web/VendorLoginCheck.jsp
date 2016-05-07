@@ -1,20 +1,25 @@
 <%@page import="authenticate.*" %>
+<%@ page import="process.Vendor" %>
 <%@page contentType="text/html" language="java" pageEncoding="UTF-8" %>
 <%
     String usernameCheck = request.getParameter("username");
     String passwordCheck = request.getParameter("password");
 
-    if (usernameCheck == "" || passwordCheck == "") { %>
-<script> alert("Please enter both the details");</script>
-<%
-    } else {
         int pass = LoginCheck.checkVendorLogin(usernameCheck, passwordCheck);
 
         if (pass == 1) {
             session.setAttribute("sessionVendor", usernameCheck);
+            String vendorName = Vendor.getVendorName(usernameCheck);
+            String outletName = Vendor.getOutletName(usernameCheck);
+            session.setAttribute("sessionVendorName", vendorName);
+            session.setAttribute("sessionVendorOutletName", outletName);
             response.sendRedirect("VendorHome.jsp");
-        } else
-            response.sendRedirect("Error.jsp");
+        } else { %>
+<script>
+    alert("Username of Password that you've entered is incorrect");
+    window.location = 'VendorLogin.jsp';
+</script>
+<%
     }
 %>
 <html>

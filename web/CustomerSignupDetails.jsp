@@ -9,37 +9,19 @@
     String mobileString = request.getParameter("mobile");
     String roomString = request.getParameter("room");
 
-    if (nameString == "" || usernameString == "" || passwordString == "" || mobileString == "" || roomString == "") { %>
-<script> alert("Please enter all the details");</script>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Sign In</title>
-</head>
-<body>
-<h1>Hungry Panda</h1>
-<center><h2> <a href="CustomerSignup.jsp"> Click here to Sign Up </a></h2>
-</center>
-</body>
-</html>
-<%
-    } else if (SignUp.customerUsernameAlreadyExists(usernameString)){ %>
-<script> alert("Username already exists");</script>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Sign In</title>
-</head>
-<body>
-<h1>Hungry Panda</h1>
-<center><h2> <a href="VendorSignup.jsp"> Click here to Sign Up </a></h2>
-</center>
-</body>
-</html>
+    if (SignUp.customerUsernameAlreadyExists(usernameString)){ %>
+<script>
+    alert("Username already exists, please try with a different username");
+    window.location = 'CustomerSignup.jsp';
+</script>
 <%
     }
     else {
-        SignUp.signUpCustomer(nameString, usernameString, passwordString, mobileString, roomString);
-        response.sendRedirect("CustomerLogin.jsp");
+        SignUp.signUpCustomer(nameString, usernameString, passwordString, mobileString, roomString); %>
+<script>
+    alert("Thank You for Registering with HungryPanda");
+    window.location = 'CustomerLogin.jsp';
+</script>
+<%
     }
 %>

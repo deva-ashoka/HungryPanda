@@ -17,10 +17,8 @@
             <h1>
                 <%
                     String sessionCustomerString = session.getAttribute("sessionCustomer").toString();
-                    String customerName = Customer.getName(sessionCustomerString);
-                    String customerMobile = Customer.getMobile(sessionCustomerString);
-                    session.setAttribute("sessionCustomerName", customerName);
-                    session.setAttribute("sessionCustomerMobile", customerMobile);
+                   String customerName = session.getAttribute("sessionCustomerName").toString();
+                   String customerMobile = session.getAttribute("sessionCustomerMobile").toString();
 
                     out.println("Hello " + customerName);
                 %>
@@ -33,14 +31,12 @@
             <%
                 ArrayList outlets = Customer.getOutlets();
                 Iterator<String> outletItr = outlets.iterator();
-                int i = 1;
                 while (outletItr.hasNext()) {
                     String outlet = outletItr.next();
             %>
             <br/> <input type="submit" name ="selectedOutlet" value="<%=outlet%>">
             <br/>
             <%
-                    i++;
                 }
             %>
             <br/>

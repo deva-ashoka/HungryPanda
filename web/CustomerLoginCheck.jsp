@@ -1,22 +1,28 @@
 <%@page contentType="text/html" language="java" pageEncoding="UTF-8" %>
 <%@page import="authenticate.*" %>
+<%@ page import="process.Customer" %>
 <html>
 <%
     String usernameCheck = request.getParameter("username");
     String passwordCheck = request.getParameter("password");
 
-    if (usernameCheck == "" || passwordCheck == "") { %>
-        <script> alert("Please enter both the details");</script>
+    int pass = LoginCheck.checkCustomerLogin(usernameCheck, passwordCheck);
+
+    if (pass == 1) {
+
+        session.setAttribute("sessionCustomer", usernameCheck);
+        String customerName = Customer.getName(usernameCheck);
+        session.setAttribute("sessionCustomerName", customerName);
+        String customerMobile = Customer.getMobile(usernameCheck);
+        session.setAttribute("sessionCustomerMobile", customerMobile);
+
+        response.sendRedirect("CustomerHome.jsp");
+    } else { %>
+<script>
+    alert("Username of Password that you've entered is incorrect");
+    window.location = 'CustomerLogin.jsp';
+</script>
 <%
-    } else {
-
-        int pass = LoginCheck.checkCustomerLogin(usernameCheck, passwordCheck);
-
-        if (pass == 1) {
-            session.setAttribute("sessionCustomer", usernameCheck);
-            response.sendRedirect("CustomerHome.jsp");
-        } else
-            response.sendRedirect("Error.jsp");
     }
 %>
 <head>
@@ -25,7 +31,7 @@
 </head>
 <body>
 <h1>Hungry Panda</h1>
-<center><h2> <a href="CustomerLogin.jsp"> Click here to Sign In </a></h2>
+<center><h2><a href="CustomerLogin.jsp"> Click here to Sign In </a></h2>
 </center>
 </body>
 </html>

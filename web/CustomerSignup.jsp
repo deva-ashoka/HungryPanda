@@ -8,15 +8,15 @@
 <h1>Hungry Panda</h1>
 <center> <h2>Customer - Sign Up</h2>
     <form action="CustomerSignupDetails.jsp" method="post">
-        <br/>Name:<input type="text" name="name">
+        <br/>Name:<input type="text" name="name" required>
         <br/>
-        <br/>Username:<input type="text" name="username">
+        <br/>Username:<input type="text" name="username" required>
         <br/>
-        <br/>Password:<input type="password" name="password">
+        <br/>Password:<input type="password" name="password" required>
         <br/>
-        <br/>Mobile Number:<input type="number" name="mobile">
+        <br/>Mobile Number:<input type="number" name="mobile" required>
         <br/>
-        <br/>Room:<input type="text" name="room">
+        <br/>Room:<input type="text" name="room" required>
         <br/>
         <br/><input type="submit" value="Submit">
     </form>

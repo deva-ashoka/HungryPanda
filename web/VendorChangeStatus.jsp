@@ -7,14 +7,15 @@
 <body>
 <%
     String customerUsername = request.getParameter("customerUsername");
-    out.println(customerUsername);
+    //out.println(customerUsername);
 
-    String orderID = request.getParameter("orderID");
-    out.println(orderID);
+    String customerOrderID = request.getParameter("customerOrderID");
+    //out.println(customerOrderID);
 
 
-    Vendor.changeStatus(customerUsername, orderID);
+    Vendor.changeStatusInCustomerMyOrdersPage(customerUsername, customerOrderID);
 
+    response.sendRedirect("VendorOrders.jsp");
 
 
 

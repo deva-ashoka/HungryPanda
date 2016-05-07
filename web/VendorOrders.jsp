@@ -24,7 +24,7 @@
                     String sessionOutletName = Vendor.getOutletName(sessionVendorString);
 
                     ArrayList<String> customerUsernames = Vendor.getVendorOrdersCustomerUsername(sessionOutletName);
-                    ArrayList<String> orderIDs = Vendor.getVendorOrdersOrderID(sessionOutletName);
+                    ArrayList<String> customerOrderIDs = Vendor.getVendorOrdersCustomerOrderID(sessionOutletName);
 
                     ArrayList<String> customerDetails = Vendor.getVendorOrdersCustomers(sessionOutletName);
                     ArrayList<ArrayList<?>> itemNames = Vendor.getVendorOrdersItemNames(sessionOutletName);
@@ -36,7 +36,7 @@
 
 
                     Iterator<String> customerUsernamesItr = customerUsernames.iterator();
-                    Iterator<String> orderIDsItr = orderIDs.iterator();
+                    Iterator<String> customerOrderIDsItr = customerOrderIDs.iterator();
 
                     Iterator<String> customerDetailsItr = customerDetails.iterator();
                     Iterator itemNamesItr = itemNames.iterator();
@@ -50,7 +50,7 @@
                     int orderNumber = 1;
 
                     while (customerDetailsItr.hasNext() && itemNamesItr.hasNext() && itemPricesItr.hasNext() && quantityItr.hasNext()
-                            && itemTotalsItr.hasNext() && totalBillsItr.hasNext() && customerUsernamesItr.hasNext() && orderIDsItr.hasNext() && deliveryStatusItr.hasNext()) {
+                            && itemTotalsItr.hasNext() && totalBillsItr.hasNext() && customerUsernamesItr.hasNext() && customerOrderIDsItr.hasNext() && deliveryStatusItr.hasNext()) {
                         out.println(orderNumber + "."); %>
             <br/>
                 <%
@@ -86,7 +86,7 @@
                     out.println("Total Bill = ₹" + totalBill);
 
                     String customerUsername = customerUsernamesItr.next();
-                    String orderID = orderIDsItr.next();
+                    String customerOrderID = customerOrderIDsItr.next();
 
                 %>
             <br/>
@@ -98,7 +98,7 @@
 
         <form method="post" action="VendorChangeStatus.jsp">
             <input type="hidden" name="customerUsername" value="<%=customerUsername%>">
-            <input type="hidden" name="orderID" value="<%=orderID%>">
+            <input type="hidden" name="customerOrderID" value="<%=customerOrderID%>">
             <input type="submit" value="Order Ready">
         </form>
         <br/>

@@ -1,10 +1,5 @@
-<%@ page import="process.Customer" %><%--
-  Created by IntelliJ IDEA.
-  User: DSV
-  Date: 07/05/16
-  Time: 7:27 AM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="process.Customer" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -13,13 +8,15 @@
 <body>
 <%
     String outletName = request.getParameter("outletName");
-    out.println(outletName);
+    //out.println(outletName);
 
     String vendorOrderID = request.getParameter("vendorOrderID");
-    out.println(vendorOrderID);
+    //out.println(vendorOrderID);
 
 
-    Customer.changeStatusInVendorDB(outletName, vendorOrderID);
+    Customer.changeStatusInVendorOrdersPage(outletName, vendorOrderID);
+
+    response.sendRedirect("CustomerOrders.jsp");
 %>
 </body>
 </html>

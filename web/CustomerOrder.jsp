@@ -33,7 +33,7 @@
                     String item = itemName + " - " + "₹" + itemPrice;
             %>
             <!-- to get the tick boxes -->
-            <input type="checkbox" name="items" value="<%=itemName%>.<%=itemPrice%>">
+            <input type="checkbox" name="items" value="<%=itemName%>,<%=itemPrice%>">
             <label for="option-<%=itemName%>.<%=itemPrice%>"> <% out.println(item);%> </label>
             <input type="number" name = "<%=itemName%>" placeholder="Quantity">
             <br/>

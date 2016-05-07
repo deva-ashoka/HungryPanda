@@ -12,11 +12,11 @@ public class Vendor {
     static DB databaseLogin = client.getDB("Login");
 
 
-    public static void changeStatus(String customerUsername, String orderID) {
+    public static void changeStatusInCustomerMyOrdersPage(String customerUsername, String customerOrderID) {
 
         DBCollection Orders = database.getCollection(customerUsername + "MyOrders");
 
-        DBObject query = new BasicDBObject("_id", new ObjectId(orderID));
+        DBObject query = new BasicDBObject("_id", new ObjectId(customerOrderID));
         DBObject update = new BasicDBObject();
         update.put("$set", new BasicDBObject("Status","Ready"));
 
@@ -51,7 +51,7 @@ public class Vendor {
         return customerUsernameArr;
     }
 
-    public static ArrayList<String> getVendorOrdersOrderID(String sessionOutletName) {
+    public static ArrayList<String> getVendorOrdersCustomerOrderID(String sessionOutletName) {
 
         DBCollection Orders = database.getCollection(sessionOutletName + "Orders");
         DBCursor cursorOrderID = Orders.find();
@@ -59,7 +59,7 @@ public class Vendor {
         ArrayList<String> orderIDArr = new ArrayList<>();
 
         while (cursorOrderID.hasNext()) {
-            String customer = (String) cursorOrderID.next().get("Order ID");
+            String customer = (String) cursorOrderID.next().get("Customer Order ID");
             orderIDArr.add(customer);
         }
         return orderIDArr;
@@ -151,11 +151,11 @@ public class Vendor {
     }
 
 
-    public static void addToVendorOrders(String selectedOutlet, String customerUsername, String orderID, String customer, ArrayList<String> itemName, ArrayList<Integer> itemPrice, ArrayList<Integer> quantity, ArrayList<Integer> itemTotal, int totalBill) {
+    public static void addToVendorOrders(String selectedOutlet, String customerUsername, String customerOrderID, String customer, ArrayList<String> itemName, ArrayList<Integer> itemPrice, ArrayList<Integer> quantity, ArrayList<Integer> itemTotal, int totalBill) {
 
         DBCollection vendorOrderCollection = database.getCollection(selectedOutlet + "Orders");
 
-        BasicDBObject presentOrder = new BasicDBObject("Customer Username", customerUsername).append("Order ID", orderID).append("Customer Details", customer).append("Item Name", itemName).append("Item Price", itemPrice).append("Quantity", quantity).append("Item Total", itemTotal).append("Total Bill", totalBill).append("Delivery Status", "Not Received");
+        BasicDBObject presentOrder = new BasicDBObject("Customer Username", customerUsername).append("Customer Order ID", customerOrderID).append("Customer Details", customer).append("Item Name", itemName).append("Item Price", itemPrice).append("Quantity", quantity).append("Item Total", itemTotal).append("Total Bill", totalBill).append("Delivery Status", "Not Received");
         vendorOrderCollection.insert(presentOrder);
 
     }

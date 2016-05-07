@@ -11,7 +11,19 @@ public class Customer {
     static DB database = client.getDB("global");
     static DB databaseLogin = client.getDB("Login");
 
-    public static void changeStatusInVendorDB(String outletName, String vendorOrderID) {
+    public static void addVendorOrderIDToMyCollection(String customerUsername, String customerOrderID, String vendorOrderID){
+
+        DBCollection Orders = database.getCollection(customerUsername + "MyOrders");
+
+        DBObject query = new BasicDBObject("_id", new ObjectId(customerOrderID));
+        DBObject update = new BasicDBObject();
+        update.put("$set", new BasicDBObject("Vendor Order ID", vendorOrderID));
+
+        Orders.update(query, update);
+
+    }
+
+    public static void changeStatusInVendorOrdersPage(String outletName, String vendorOrderID) {
 
         DBCollection Orders = database.getCollection(outletName + "Orders");
 
@@ -25,7 +37,7 @@ public class Customer {
     public static String getVendorOrderID(String outletName, String customerOrderID){
 
         DBCollection orders = database.getCollection(outletName + "Orders");
-        DBObject query = new BasicDBObject("Order ID", customerOrderID);
+        DBObject query = new BasicDBObject("Customer Order ID", customerOrderID);
         DBObject where = orders.findOne(query);
 
         String vendorOrderID = where.get("_id").toString();
@@ -43,6 +55,20 @@ public class Customer {
             orderID = cursor.next().get("_id").toString();
         }
         return orderID;
+    }
+
+    public static ArrayList<String> getCustomerOrdersVendorOrderIDs(String username) {
+
+        DBCollection Orders = database.getCollection(username + "MyOrders");
+        DBCursor cursorVendorOrderIDs = Orders.find();
+
+        ArrayList<String> vendorOrderIDsArr = new ArrayList<>();
+
+        while (cursorVendorOrderIDs.hasNext()) {
+            String outlet = (String) cursorVendorOrderIDs.next().get("Vendor Order ID");
+            vendorOrderIDsArr.add(outlet);
+        }
+        return vendorOrderIDsArr;
     }
 
 
@@ -148,7 +174,7 @@ public class Customer {
 
         DBCollection vendorOrderCollection = database.getCollection(username + "MyOrders");
 
-        BasicDBObject presentOrder = new BasicDBObject("Outlet", outlet).append("Item Name", itemName).append("Item Price", itemPrice).append("Quantity", quantity).append("Item Total", itemTotal).append("Total Bill", totalBill).append("Status", "Not Ready");
+        BasicDBObject presentOrder = new BasicDBObject("Outlet", outlet).append("Vendor Order ID", " ").append("Item Name", itemName).append("Item Price", itemPrice).append("Quantity", quantity).append("Item Total", itemTotal).append("Total Bill", totalBill).append("Status", "Not Ready");
         vendorOrderCollection.insert(presentOrder);
     }
 

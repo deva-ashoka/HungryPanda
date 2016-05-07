@@ -10,10 +10,10 @@
 <body>
             <%
 
-                String vendorOrderID;
                 String sessionCustomerUsername = session.getAttribute("sessionCustomer").toString();
 
                 ArrayList<String> outlets = Customer.getCustomersOrdersOutlets(sessionCustomerUsername);
+                ArrayList<String> vendorOrderIDs = Customer.getCustomerOrdersVendorOrderIDs(sessionCustomerUsername);
                 ArrayList<ArrayList<?>> itemNames = Customer.getCustomerOrdersItemNames(sessionCustomerUsername);
                 ArrayList<ArrayList<?>> itemPrices = Customer.getCustomerOrdersItemPrices(sessionCustomerUsername);
                 ArrayList<ArrayList<?>> quantity = Customer.getCustomerOrdersQuantity(sessionCustomerUsername);
@@ -23,6 +23,7 @@
 
 
                 Iterator<String> outletsItr = outlets.iterator();
+                Iterator<String> vendorOrderIDsItr = vendorOrderIDs.iterator();
                 Iterator itemNamesItr = itemNames.iterator();
                 Iterator itemPricesItr = itemPrices.iterator();
                 Iterator quantityItr = quantity.iterator();
@@ -73,13 +74,14 @@
                 String orderStatus = statusItr.next();
                 out.println("Order Status: " + orderStatus);
 
-                    vendorOrderID = session.getAttribute("vendorOrderID").toString();
+
+                String vendorOrderID = vendorOrderIDsItr.next();
             %>
             <br/>
             <form method="post" action="CustomerChangeStatus.jsp">
                 <input type ="hidden" name="outletName" value = "<%=outlet%>">
                 <input type ="hidden" name="vendorOrderID" value = "<%=vendorOrderID%>">
-            <input type="submit" value="Received">
+            <input type="submit" id="mySubmit" value="Received">
             </form>
             <%
                     orderNumber++;
