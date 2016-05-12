@@ -12,89 +12,86 @@
 <body>
 
 <div class="jumbotron">
-    <div class="container">
-        <div class="nav">
+    <div class="container" align="center">
             <h1>ORDERS</h1>
             <br/>
-        </div>
-        <p>
-                <%
 
-                    String sessionVendorString = session.getAttribute("sessionVendor").toString();
-                    String sessionOutletName = Vendor.getOutletName(sessionVendorString);
+        <%
 
-                    ArrayList<String> customerUsernames = Vendor.getVendorOrdersCustomerUsername(sessionOutletName);
-                    ArrayList<String> customerOrderIDs = Vendor.getVendorOrdersCustomerOrderID(sessionOutletName);
+            String sessionVendorString = session.getAttribute("sessionVendor").toString();
+            String sessionOutletName = Vendor.getOutletName(sessionVendorString);
 
-                    ArrayList<String> customerDetails = Vendor.getVendorOrdersCustomers(sessionOutletName);
-                    ArrayList<ArrayList<?>> itemNames = Vendor.getVendorOrdersItemNames(sessionOutletName);
-                    ArrayList<ArrayList<?>> itemPrices = Vendor.getVendorOrdersItemPrices(sessionOutletName);
-                    ArrayList<ArrayList<?>> quantity = Vendor.getVendorOrdersQuantity(sessionOutletName);
-                    ArrayList<ArrayList<?>> itemTotals = Vendor.getVendorOrdersItemTotal(sessionOutletName);
-                    ArrayList<String> totalBills = Vendor.getVendorOrdersTotalBill(sessionOutletName);
-                    ArrayList<String> deliveryStatus = Vendor.getVendorOrdersDeliveryStatus(sessionOutletName);
+            ArrayList<String> customerUsernames = Vendor.getVendorOrdersCustomerUsername(sessionOutletName);
+            ArrayList<String> customerOrderIDs = Vendor.getVendorOrdersCustomerOrderID(sessionOutletName);
 
-
-                    Iterator<String> customerUsernamesItr = customerUsernames.iterator();
-                    Iterator<String> customerOrderIDsItr = customerOrderIDs.iterator();
-
-                    Iterator<String> customerDetailsItr = customerDetails.iterator();
-                    Iterator itemNamesItr = itemNames.iterator();
-                    Iterator itemPricesItr = itemPrices.iterator();
-                    Iterator quantityItr = quantity.iterator();
-                    Iterator itemTotalsItr = itemTotals.iterator();
-                    Iterator<String> totalBillsItr = totalBills.iterator();
-                    Iterator<String> deliveryStatusItr = deliveryStatus.iterator();
+            ArrayList<String> customerDetails = Vendor.getVendorOrdersCustomers(sessionOutletName);
+            ArrayList<ArrayList<?>> itemNames = Vendor.getVendorOrdersItemNames(sessionOutletName);
+            ArrayList<ArrayList<?>> itemPrices = Vendor.getVendorOrdersItemPrices(sessionOutletName);
+            ArrayList<ArrayList<?>> quantity = Vendor.getVendorOrdersQuantity(sessionOutletName);
+            ArrayList<ArrayList<?>> itemTotals = Vendor.getVendorOrdersItemTotal(sessionOutletName);
+            ArrayList<String> totalBills = Vendor.getVendorOrdersTotalBill(sessionOutletName);
+            ArrayList<String> deliveryStatus = Vendor.getVendorOrdersDeliveryStatus(sessionOutletName);
 
 
-                    int orderNumber = 1;
+            Iterator<String> customerUsernamesItr = customerUsernames.iterator();
+            Iterator<String> customerOrderIDsItr = customerOrderIDs.iterator();
 
-                    while (customerDetailsItr.hasNext() && itemNamesItr.hasNext() && itemPricesItr.hasNext() && quantityItr.hasNext()
-                            && itemTotalsItr.hasNext() && totalBillsItr.hasNext() && customerUsernamesItr.hasNext() && customerOrderIDsItr.hasNext() && deliveryStatusItr.hasNext()) {
-                        out.println(orderNumber + "."); %>
-            <br/>
-                <%
-                    String customer = customerDetailsItr.next();
-                    out.println("Ordered by: " + customer); %>
-            <br/>
-                <%
+            Iterator<String> customerDetailsItr = customerDetails.iterator();
+            Iterator itemNamesItr = itemNames.iterator();
+            Iterator itemPricesItr = itemPrices.iterator();
+            Iterator quantityItr = quantity.iterator();
+            Iterator itemTotalsItr = itemTotals.iterator();
+            Iterator<String> totalBillsItr = totalBills.iterator();
+            Iterator<String> deliveryStatusItr = deliveryStatus.iterator();
 
-                    ArrayList<?> namesInEachOrder = (ArrayList<?>) itemNamesItr.next();
-                    Iterator namesInEachOrderItr = namesInEachOrder.iterator();
 
-                    ArrayList<?> pricesInEachOrder = (ArrayList<?>) itemPricesItr.next();
-                    Iterator pricesInEachOrderItr = pricesInEachOrder.iterator();
+            int orderNumber = 1;
 
-                    ArrayList<?> quantityInEachOrder = (ArrayList<?>) quantityItr.next();
-                    Iterator quantityInEachOrderItr = quantityInEachOrder.iterator();
+            while (customerDetailsItr.hasNext() && itemNamesItr.hasNext() && itemPricesItr.hasNext() && quantityItr.hasNext()
+                    && itemTotalsItr.hasNext() && totalBillsItr.hasNext() && customerUsernamesItr.hasNext() && customerOrderIDsItr.hasNext() && deliveryStatusItr.hasNext()) {
+                out.println(orderNumber + "."); %>
+        <%
+            String customer = customerDetailsItr.next();
+            out.println("Ordered by: " + customer); %>
+        <br/>
+        <%
 
-                    ArrayList<?> itemTotalInEachOrder = (ArrayList<?>) itemTotalsItr.next();
-                    Iterator itemTotalInEachOrderItr = itemTotalInEachOrder.iterator();
+            ArrayList<?> namesInEachOrder = (ArrayList<?>) itemNamesItr.next();
+            Iterator namesInEachOrderItr = namesInEachOrder.iterator();
 
-                    while (namesInEachOrderItr.hasNext() && pricesInEachOrderItr.hasNext() && quantityInEachOrderItr.hasNext()
-                            && itemTotalInEachOrderItr.hasNext()) {
-                        String name = namesInEachOrderItr.next().toString();
-                        String price = pricesInEachOrderItr.next().toString();
-                        String qty = quantityInEachOrderItr.next().toString();
-                        String totalForItem = itemTotalInEachOrderItr.next().toString();
+            ArrayList<?> pricesInEachOrder = (ArrayList<?>) itemPricesItr.next();
+            Iterator pricesInEachOrderItr = pricesInEachOrder.iterator();
 
-                        out.println(name + " - ₹" + price + " :: Quantity = " + qty + " :: Total for " + name + " = ₹" + totalForItem); %>
-            <br/>
-                <%
-                    }
-                    String totalBill = totalBillsItr.next();
-                    out.println("Total Bill = ₹" + totalBill);
+            ArrayList<?> quantityInEachOrder = (ArrayList<?>) quantityItr.next();
+            Iterator quantityInEachOrderItr = quantityInEachOrder.iterator();
 
-                    String customerUsername = customerUsernamesItr.next();
-                    String customerOrderID = customerOrderIDsItr.next();
+            ArrayList<?> itemTotalInEachOrder = (ArrayList<?>) itemTotalsItr.next();
+            Iterator itemTotalInEachOrderItr = itemTotalInEachOrder.iterator();
 
-                %>
-            <br/>
-                <%
-                    String customerDeliveryStatus = deliveryStatusItr.next();
-                    out.println("Delivery Status: " + customerDeliveryStatus);
-                        %>
-            <br/>
+            while (namesInEachOrderItr.hasNext() && pricesInEachOrderItr.hasNext() && quantityInEachOrderItr.hasNext()
+                    && itemTotalInEachOrderItr.hasNext()) {
+                String name = namesInEachOrderItr.next().toString();
+                String price = pricesInEachOrderItr.next().toString();
+                String qty = quantityInEachOrderItr.next().toString();
+                String totalForItem = itemTotalInEachOrderItr.next().toString();
+
+                out.println(name + " - ₹" + price + " :: Quantity = " + qty + " :: Total for " + name + " = ₹" + totalForItem); %>
+        <br/>
+        <%
+            }
+            String totalBill = totalBillsItr.next();
+            out.println("Total Bill = ₹" + totalBill);
+
+            String customerUsername = customerUsernamesItr.next();
+            String customerOrderID = customerOrderIDsItr.next();
+
+        %>
+        <br/>
+        <%
+            String customerDeliveryStatus = deliveryStatusItr.next();
+            out.println("Delivery Status: " + customerDeliveryStatus);
+        %>
+        <br/>
 
         <form method="post" action="VendorChangeStatus.jsp">
             <input type="hidden" name="customerUsername" value="<%=customerUsername%>">
@@ -108,7 +105,11 @@
             }
 
         %>
-        </p>
+        </div>
+    <h2>
+        <a href="VendorHome.jsp">Menu</a>
+        <a href="index.jsp">Logout</a>
+    </h2>
     </div>
 </div>
 

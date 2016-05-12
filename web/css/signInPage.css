@@ -1,5 +1,5 @@
 .jumbotron {
-  background-image:url('http://4hdwallpapers.com/wp-content/uploads/2013/03/Vector-Art-Flower-Leaf.jpg');
+  background-image:url('butterfly leaves.jpg');
   height:655px;
   background-repeat: no-repeat;
   background-size:cover;
@@ -28,6 +28,23 @@
 .jumbotron .nav {
     font-family: 'Shift', cursive;
 
+}
+input[type=submit] {
+    background-color: rgba(0, 0, 0, 0.57);
+    color:white;
+    -moz-border-radius:10px; /* Firefox */
+    -webkit-border-radius: 10px; /* Safari, Chrome */
+    -khtml-border-radius: 10px; /* KHTML */
+    border-radius: 10px; /* CSS3 */
+    padding: 2px 6px 2px 6px;
+    border-color: white;
+    border-style:solid;
+}
+input[type=submit]:hover
+{
+    background-color: rgba(0, 0, 0, 0.57);
+    border-color: #888;
+    box-shadow: 0 0 2px #ccc;
 }
 
 

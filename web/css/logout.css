@@ -1,0 +1,17 @@
+.jumbotron {
+    background-image: url('http://cdn.paper4pc.com/images/falling-green-leaves-wallpaper-1.jpg');
+    background-size: cover;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.jumbotron h1 {
+    font-size: 40px;
+    font-family: 'Shift', cursive;
+    font-weight: bold;
+    color: white;
+    position: relative;
+    left: 250px;
+    top: 150px;
+
+}
