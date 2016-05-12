@@ -6,13 +6,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/bootstrap.css" rel="stylesheet" >
-    <link href="css/vendorHome.css" rel="stylesheet" >
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/vendorHome.css" rel="stylesheet">
     <title>Home</title>
 </head>
 <body>
 <center>
-    <div class = "jumbotron">
+    <div class="jumbotron">
 
         <h1>
             <%
@@ -21,16 +21,17 @@
                 String outletName = session.getAttribute("sessionVendorOutletName").toString();
                 out.println("Hello " + vendorName);
             %>
-            <br/>
-            <br/>
-            <div class = "container">
+        </h1>
+
+        <div class="container">
             <form action="AddToMenu.jsp" method="post">
                 Item Name:<input type="text" name="item">
-                Price:<input type="number" name="price">
+                Price:<input type="number" min="1" name="price">
                 <input type="submit" value="Add">
             </form>
-            </div>
-            <br/>
+        </div>
+        <br/>
+        <h3>
             <%
                 ArrayList menuItemNames = Vendor.getItemNames(outletName);
                 Iterator<String> menuItr = menuItemNames.iterator();
@@ -51,12 +52,11 @@
             %>
             <br/>
             <br/>
-        </h1>
-        <h2>
+        </h3>
+
+        <h2 align="right">
             <a href="VendorOrders.jsp">Orders</a>
-            <br/>
-            <br/>
-            <a href="Logout.jsp">Logout</a>
+            <a href="index.jsp">Logout</a>
         </h2>
     </div>
 </center>

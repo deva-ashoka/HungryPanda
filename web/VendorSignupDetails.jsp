@@ -9,13 +9,13 @@
     String mobileString = request.getParameter("mobile");
     String outletNameString = request.getParameter("outletName");
 
-    if (SignUp.vendorUsernameAlreadyExists(usernameString)){ %>
+    if (SignUp.vendorUsernameAlreadyExists(usernameString)) { %>
 <script>
-alert("Username already exists, please try with a different username");
-window.location = 'VendorSignup.jsp';
+    alert("Username already exists, please try with a different username");
+    window.location = 'VendorSignup.jsp';
 </script>
 <%
-    } else {
+} else {
     SignUp.signUpVendor(nameString, usernameString, passwordString, mobileString, outletNameString); %>
 <script>
     alert("Thank You for Registering with HungryPanda");

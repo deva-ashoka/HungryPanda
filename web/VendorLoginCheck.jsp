@@ -5,16 +5,16 @@
     String usernameCheck = request.getParameter("username");
     String passwordCheck = request.getParameter("password");
 
-        int pass = LoginCheck.checkVendorLogin(usernameCheck, passwordCheck);
+    int pass = LoginCheck.checkVendorLogin(usernameCheck, passwordCheck);
 
-        if (pass == 1) {
-            session.setAttribute("sessionVendor", usernameCheck);
-            String vendorName = Vendor.getVendorName(usernameCheck);
-            String outletName = Vendor.getOutletName(usernameCheck);
-            session.setAttribute("sessionVendorName", vendorName);
-            session.setAttribute("sessionVendorOutletName", outletName);
-            response.sendRedirect("VendorHome.jsp");
-        } else { %>
+    if (pass == 1) {
+        session.setAttribute("sessionVendor", usernameCheck);
+        String vendorName = Vendor.getVendorName(usernameCheck);
+        String outletName = Vendor.getOutletName(usernameCheck);
+        session.setAttribute("sessionVendorName", vendorName);
+        session.setAttribute("sessionVendorOutletName", outletName);
+        response.sendRedirect("VendorHome.jsp");
+    } else { %>
 <script>
     alert("Username of Password that you've entered is incorrect");
     window.location = 'VendorLogin.jsp';
@@ -29,7 +29,7 @@
 </head>
 <body>
 <h1>Hungry Panda</h1>
-<center><h2> <a href="VendorLogin.jsp"> Click here to Sign In </a></h2>
+<center><h2><a href="VendorLogin.jsp"> Click here to Sign In </a></h2>
 </center>
 </body>
 </html>

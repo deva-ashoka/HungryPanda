@@ -18,7 +18,6 @@
     response.sendRedirect("VendorOrders.jsp");
 
 
-
 %>
 </body>
 </html>

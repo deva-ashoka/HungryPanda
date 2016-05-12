@@ -1,69 +1,96 @@
 .jumbotron {
-    background-image:url('http://www.coronaleaf.com/images/bg-main.jpg');
-    height:655px;
-    background-repeat: repeat;
-    background-size:cover;
+    background: url('Order Leaves.jpg');
+    background-size: cover;
+    max-width: 100%;
+    overflow-x: hidden;
 
-}
-
-input[type=submit] {
-    position: relative;
-    left: 500px;
-    background-color: rgba(0, 0, 0, 0.57);
-    color:white;
-    font-size: 20px;
-    -moz-border-radius:10px; /* Firefox */
-    -webkit-border-radius: 10px; /* Safari, Chrome */
-    -khtml-border-radius: 10px; /* KHTML */
-    border-radius: 10px; /* CSS3 */
-    padding: 2px 6px 2px 6px;
-    border-color: white;
-    border-style:solid;
-}
-
-input[type=number] {
-    position: relative;
-    background-color: rgba(0, 0, 0, 0.57);
-    color:white;
-    font-size: 20px;
-    -moz-border-radius:10px; /* Firefox */
-    -webkit-border-radius: 10px; /* Safari, Chrome */
-    -khtml-border-radius: 10px; /* KHTML */
-    border-radius: 10px; /* CSS3 */
-    padding: 2px 6px 2px 6px;
-    border-color: white;
-    border-style:solid;
-}
-.jumbotron a{
-    position:relative;
-    background-color: rgba(0, 0, 0, 0.57);
-    display:inline;
-    font-size: 22px;
-    font-family: 'Shift', cursive;
-    color: white;
-    font-family: 'Shift', cursive;
-    font: inherit 20px Arial;
-    text-decoration: blink;
-    padding: 6px 6px 2px 6px;
-    border-top: 1px solid #CCCCCC;
-    border-right: 1px solid #333333;
-    border-bottom: 1px solid #333333;
-    border-left: 1px solid #CCCCCC;
-    border-radius: 14px;
-}
-
-.jumbotron .container {
-    position: relative;
-    left:300px;
-    font-size: 17px;
 }
 
 .jumbotron h1 {
-    font-size: 50px;
+    font-size: 60px;
     font-family: 'Shift', cursive;
     font-weight: bold;
     color: white;
 }
+
+.jumbotron h2 {
+    position: fixed;
+    right: 10px;
+    top: -10px;
+    font-size: 27px;
+    font-family: 'Shift', cursive;
+    font-weight: bold;
+    color: white;
+}
+
+
+input[type=submit] {
+    background-color: rgba(0, 0, 0, 0.57);
+    color:white;
+    -moz-border-radius:10px; /* Firefox */
+    -webkit-border-radius: 10px; /* Safari, Chrome */
+    -khtml-border-radius: 10px; /* KHTML */
+    border-radius: 10px; /* CSS3 */
+    padding: 2px 6px 2px 6px;
+    border-color: white;
+    border-style:solid;
+
+}
+
+input[type=number] {
+    background-color: rgba(0, 0, 0, 0.57);
+    color:white;
+    -moz-border-radius:10px; /* Firefox */
+    -webkit-border-radius: 10px; /* Safari, Chrome */
+    -khtml-border-radius: 10px; /* KHTML */
+    border-radius: 10px; /* CSS3 */
+    padding: 2px 6px 2px 6px;
+    border-color: white;
+    border-style:solid;
+
+}
+input[type=submit]:hover
+{
+    background-color: rgba(0, 0, 0, 0.57);
+    border-color:#888;
+    box-shadow:0 0 2px #ccc;
+}
+
+.jumbotron .container {
+    font-size: 20px;
+    font-family: 'Shift', cursive;
+    font-weight: bold;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.57);
+    -moz-border-radius:10px; /* Firefox */
+    -webkit-border-radius: 10px; /* Safari, Chrome */
+    -khtml-border-radius: 10px; /* KHTML */
+    border-radius: 10px; /* CSS3 */
+    padding: 2px 6px 2px 6px;
+    border-color: white;
+    border-style:solid;
+}
+
+.jumbotron a {
+    background-color: rgba(0, 0, 0, 0.57);
+    color: white;
+    -moz-border-radius: 10px; /* Firefox */
+    -webkit-border-radius: 10px; /* Safari, Chrome */
+    -khtml-border-radius: 10px; /* KHTML */
+    border-radius: 10px; /* CSS3 */
+    padding: 6px 6px 2px 6px;
+    border-color: white;
+    border-style: solid;
+    text-decoration: blink;
+}
+
+a:hover {
+    background-color: rgba(0, 0, 0, 0.57);
+    border-color: #888;
+    box-shadow: 0 0 2px #ccc;
+}
+
+
 
 
 

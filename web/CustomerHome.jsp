@@ -27,6 +27,7 @@
             <h2>
                 Please select the outlet:
             </h2>
+
             <br/>
             <%
                 ArrayList outlets = Customer.getOutlets();
@@ -34,16 +35,18 @@
                 while (outletItr.hasNext()) {
                     String outlet = outletItr.next();
             %>
+            <h4>
             <br/> <input type="submit" name ="selectedOutlet" value="<%=outlet%>">
             <br/>
             <%
                 }
             %>
+            </h4>
+            <h3>
             <br/>
             <a href="CustomerOrders.jsp">My Orders</a>
-            <br/>
-            <br/>
-            <a href="Logout.jsp">Logout</a>
+            <a href="index.jsp">Logout</a>
+            </h3>
         </form>
     </div>
 </center>

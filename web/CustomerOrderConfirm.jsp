@@ -10,7 +10,7 @@
     <title></title>
 </head>
 <body>
-<div class="jumbotron">
+<div class="jumbotron" align="center">
     <h1>
         Your Order:
     </h1>
@@ -63,7 +63,6 @@
             }
         %>
         <br/>
-        <br/>
         <%
             out.println("Your total bill is: ₹" + totalBill);
         %>
@@ -72,9 +71,13 @@
         <br/>
         <br/>
     </div>
-    <h2>Order Successfully placed!</h2>
-    <br/>
-    <a href="CustomerOrders.jsp"><h2> My Orders </h2></a>
+    <h2>Order Successfully placed!
+    </h2>
+    <h3>
+        <a href="CustomerHome.jsp">Home</a>
+        <a href="CustomerOrders.jsp">My Orders</a>
+        <a href="index.jsp">Logout</a>
+    </h3>
 </div>
 </body>
 </html>
