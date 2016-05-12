@@ -27,7 +27,7 @@
 <div class="jumbotron">
 
     <div class="container">
-        <h1>Hungry Panda</h1>
+        <h1>Vendor Login</h1>
     </div>
 
     <div class="nav">

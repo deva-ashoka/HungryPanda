@@ -1,7 +1,5 @@
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="process.Customer" %>
-<%@ page import="java.util.Iterator" %>
-<%@ page import="java.util.List" %>
+<%@ page import="java.util.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java" errorPage="Error.jsp" %>
 <%
     String check = (String) session.getAttribute("sessionCustomer");
@@ -31,6 +29,15 @@
             List<List<?>> itemTotals = Customer.getCustomerOrdersItemTotal(sessionCustomerUsername);
             List<String> totalBills = Customer.getCustomerOrdersTotalBill(sessionCustomerUsername);
             List<String> status = Customer.getOrderStatus(sessionCustomerUsername);
+
+            Collections.reverse(outlets);
+            Collections.reverse(vendorOrderIDs);
+            Collections.reverse(itemNames);
+            Collections.reverse(itemPrices);
+            Collections.reverse(quantity);
+            Collections.reverse(itemTotals);
+            Collections.reverse(totalBills);
+            Collections.reverse(status);
 
 
             Iterator<String> outletsItr = outlets.iterator();

@@ -12,7 +12,7 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/vendorHome.css" rel="stylesheet">
-    <title>Home</title>
+    <title>Vendor Home</title>
 </head>
 <body>
 <center>
@@ -29,8 +29,8 @@
 
         <div class="container">
             <form action="AddToMenu.jsp" method="post">
-                Item Name:<input type="text" name="item">
-                Price:<input type="number" min="1" name="price">
+                Item Name:<input type="text" name="item" required>
+                Price:<input type="number" min="1" name="price" required>
                 <input type="submit" value="Add">
             </form>
         </div>

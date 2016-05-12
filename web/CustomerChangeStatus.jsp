@@ -5,15 +5,13 @@
     if (check != null) { %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Update</title>
 </head>
 <body>
 <%
     String outletName = request.getParameter("outletName");
-    //out.println(outletName);
 
     String vendorOrderID = request.getParameter("vendorOrderID");
-    //out.println(vendorOrderID);
 
 
     Customer.changeStatusInVendorOrdersPage(outletName, vendorOrderID);

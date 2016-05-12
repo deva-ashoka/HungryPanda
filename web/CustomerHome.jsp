@@ -13,7 +13,7 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/customerHome.css" rel="stylesheet">
-    <title>Home</title>
+    <title>Customer Home</title>
 </head>
 <body>
 <center>

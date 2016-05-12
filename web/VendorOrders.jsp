@@ -2,6 +2,7 @@
 <%@ page import="process.Vendor" %>
 <%@ page import="java.util.Iterator" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Collections" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java" errorPage="Error.jsp" %>
 <%
     String check = (String) session.getAttribute("sessionVendor");
@@ -11,7 +12,7 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/vendorOrders.css" rel="stylesheet">
-    <title>Orders</title>
+    <title>Vendor Orders</title>
 </head>
 <body>
 
@@ -27,7 +28,6 @@
 
             List<String> customerUsernames = Vendor.getVendorOrdersCustomerUsername(sessionOutletName);
             List<String> customerOrderIDs = Vendor.getVendorOrdersCustomerOrderID(sessionOutletName);
-
             List<String> customerDetails = Vendor.getVendorOrdersCustomers(sessionOutletName);
             List<List<?>> itemNames = Vendor.getVendorOrdersItemNames(sessionOutletName);
             List<List<?>> itemPrices = Vendor.getVendorOrdersItemPrices(sessionOutletName);
@@ -36,10 +36,19 @@
             List<String> totalBills = Vendor.getVendorOrdersTotalBill(sessionOutletName);
             List<String> deliveryStatus = Vendor.getVendorOrdersDeliveryStatus(sessionOutletName);
 
+            Collections.reverse(customerUsernames);
+            Collections.reverse(customerOrderIDs);
+            Collections.reverse(customerDetails);
+            Collections.reverse(itemNames);
+            Collections.reverse(itemPrices);
+            Collections.reverse(quantity);
+            Collections.reverse(itemTotals);
+            Collections.reverse(totalBills);
+            Collections.reverse(deliveryStatus);
+
 
             Iterator<String> customerUsernamesItr = customerUsernames.iterator();
             Iterator<String> customerOrderIDsItr = customerOrderIDs.iterator();
-
             Iterator<String> customerDetailsItr = customerDetails.iterator();
             Iterator itemNamesItr = itemNames.iterator();
             Iterator itemPricesItr = itemPrices.iterator();

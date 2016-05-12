@@ -21,7 +21,7 @@
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 
 
-    <title>Sign In</title>
+    <title>Customer Sign In</title>
 </head>
 <body>
 <div class="jumbotron">

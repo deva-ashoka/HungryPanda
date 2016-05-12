@@ -27,7 +27,7 @@
 %>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Sign In</title>
+    <title>Customer Login Check</title>
 </head>
 <body>
 <h1>Hungry Panda</h1>

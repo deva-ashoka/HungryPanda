@@ -11,7 +11,7 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/customerOrder.css" rel="stylesheet">
-    <title></title>
+    <title> Customer Order </title>
 </head>
 <body>
 <div class="jumbotron">

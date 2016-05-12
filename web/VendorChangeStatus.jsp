@@ -5,7 +5,7 @@
     if (check != null) { %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Update</title>
 </head>
 <body>
 <%

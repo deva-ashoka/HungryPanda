@@ -5,7 +5,7 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/signInPage.css" rel="stylesheet">
-    <title>Sign Up</title>
+    <title>Vendor Sign Up</title>
 </head>
 <body>
 <div class="jumbotron">

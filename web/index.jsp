@@ -5,7 +5,7 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
-    <title>Sign In</title>
+    <title>HungryPanda</title>
 </head>
 <body>
 
