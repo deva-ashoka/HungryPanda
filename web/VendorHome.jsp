@@ -2,6 +2,9 @@
 <%@page import="process.*" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Iterator" %>
+<%
+    String check = (String) session.getAttribute("sessionVendor");
+    if (check != null) { %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -19,7 +22,7 @@
                 String sessionVendorString = session.getAttribute("sessionVendor").toString();
                 String vendorName = session.getAttribute("sessionVendorName").toString();
                 String outletName = session.getAttribute("sessionVendorOutletName").toString();
-                out.println("Hello " + vendorName);
+                out.println("Hello " + outletName);
             %>
         </h1>
 
@@ -56,9 +59,18 @@
 
         <h2 align="right">
             <a href="VendorOrders.jsp">Orders</a>
-            <a href="index.jsp">Logout</a>
+            <a href="Logout.jsp">Logout</a>
         </h2>
     </div>
 </center>
 </body>
 </html>
+<%
+} else { %>
+<script>
+    alert("Please Login");
+    window.location = 'VendorLogin.jsp';
+</script>
+<%
+    }
+%>

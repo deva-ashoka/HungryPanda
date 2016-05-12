@@ -11,6 +11,10 @@ public class Customer {
     static DB database = client.getDB("global");
     static DB databaseLogin = client.getDB("Login");
 
+    /**
+     * Method to add the Vendor ObjectID of a particular order (for reference) to customer's collection.
+     * Takes 3 inputs - Customer's username & Order's ObjectID, and Vendor's Object ID.
+     */
     public static void addVendorOrderIDToMyCollection(String customerUsername, String customerOrderID, String vendorOrderID){
 
         DBCollection Orders = database.getCollection(customerUsername + "MyOrders");
@@ -23,6 +27,10 @@ public class Customer {
 
     }
 
+    /**
+     * Method to change the status of an order in Vendor's collection.
+     * Used when the customer clicks the 'Received' button in customer's Orders Page
+     */
     public static void changeStatusInVendorOrdersPage(String outletName, String vendorOrderID) {
 
         DBCollection Orders = database.getCollection(outletName + "Orders");
@@ -34,6 +42,9 @@ public class Customer {
         Orders.update(query, update);
     }
 
+    /**
+     * Method to get ObjectID of an order from Vendor's Order collection
+     */
     public static String getVendorOrderID(String outletName, String customerOrderID){
 
         DBCollection orders = database.getCollection(outletName + "Orders");
@@ -46,6 +57,9 @@ public class Customer {
 
     }
 
+    /**
+     * Method to get the ObjectID of the most recently placed order.
+     */
     public static String getLastOrderID(String username){
         String orderID = "";
         DBCollection coll = database.getCollection(username + "MyOrders");
@@ -57,6 +71,9 @@ public class Customer {
         return orderID;
     }
 
+    /**
+     * Method to get all the OrderIDs of Vendors stored in customer's MyOrders' collection.
+     */
     public static ArrayList<String> getCustomerOrdersVendorOrderIDs(String username) {
 
         DBCollection Orders = database.getCollection(username + "MyOrders");
@@ -71,7 +88,9 @@ public class Customer {
         return vendorOrderIDsArr;
     }
 
-
+    /**
+     * Method to get the Order Status of the orders from customer's MyOrders' Collection
+     */
     public static ArrayList<String> getOrderStatus(String username) {
 
         DBCollection Orders = database.getCollection(username + "MyOrders");
@@ -86,6 +105,9 @@ public class Customer {
         return statusArr;
     }
 
+    /**
+     * Method to get the Outlets from where the customer Ordered.
+     */
     public static ArrayList<String> getCustomersOrdersOutlets(String username) {
 
         DBCollection Orders = database.getCollection(username + "MyOrders");
@@ -100,6 +122,10 @@ public class Customer {
         return outletArr;
     }
 
+    /**
+     * Method to get the Item Names of every Order the customer has placed.
+     * Returns a list of lists - each order may contain multiple items.
+     */
     public static ArrayList<ArrayList<?>> getCustomerOrdersItemNames(String username) {
 
         DBCollection Orders = database.getCollection(username + "MyOrders");
@@ -114,6 +140,10 @@ public class Customer {
         return itemNamesArr;
     }
 
+    /**
+     * Method to get the Item Prices of every Order the customer has placed.
+     * Returns a list of lists - each order may contain multiple items.
+     */
     public static ArrayList<ArrayList<?>> getCustomerOrdersItemPrices(String username) {
 
         DBCollection Orders = database.getCollection(username + "MyOrders");
@@ -128,6 +158,10 @@ public class Customer {
         return itemPricesArr;
     }
 
+    /**
+     * Method to get the Quantity of every Order the customer has placed.
+     * Returns a list of lists - each order may contain multiple items.
+     */
     public static ArrayList<ArrayList<?>> getCustomerOrdersQuantity(String username) {
 
         DBCollection Orders = database.getCollection(username + "MyOrders");
@@ -142,6 +176,10 @@ public class Customer {
         return quantityArr;
     }
 
+    /**
+     * Method to get the each item's total of every Order the customer has placed.
+     * Returns a list of lists - each order may contain multiple items.
+     */
     public static ArrayList<ArrayList<?>> getCustomerOrdersItemTotal(String username) {
 
         DBCollection Orders = database.getCollection(username + "MyOrders");
@@ -156,6 +194,10 @@ public class Customer {
         return itemTotalArr;
     }
 
+    /**
+     * Method to get the total bill of every Order the customer has placed.
+     * Returns a list of all the total bills
+     */
     public static ArrayList<String> getCustomerOrdersTotalBill(String username) {
 
         DBCollection Orders = database.getCollection(username + "MyOrders");
@@ -170,6 +212,9 @@ public class Customer {
         return totalBillArr;
     }
 
+    /**
+     * Method to add an order to Customer's Orders' Collection.
+     */
     public static void addToCustomerOrders(String username, String outlet, ArrayList<String> itemName, ArrayList<Integer> itemPrice, ArrayList<Integer> quantity, ArrayList<Integer> itemTotal, int totalBill) {
 
         DBCollection vendorOrderCollection = database.getCollection(username + "MyOrders");
@@ -178,6 +223,10 @@ public class Customer {
         vendorOrderCollection.insert(presentOrder);
     }
 
+    /**
+     * Method to get the Name of the user from a username.
+     * Searches the Db for the given username and returns the Name (String).
+     */
     public static String getName (String username) {
 
         String name;
@@ -192,6 +241,10 @@ public class Customer {
         return name;
     }
 
+    /**
+     * Method to get the mobile number of the user from username (input).
+     * Searches the Db for the given username and returns the mobile number (String)
+     */
     public static String getMobile (String username) {
 
         String mobile;
@@ -207,11 +260,19 @@ public class Customer {
     }
 
 
+    /**
+     * Method to calculate each item's total and return the total.
+     * Takes price (integer) and quantity (integer) as inputs.
+     */
     public static int getEachItemTotal(int price, int quantity){
         int eachItemTotal = price*quantity;
         return eachItemTotal;
     }
 
+    /**
+     * Method to calculate total bill of an order and return the total bill.
+     * Take an arraylist as input and adds all the elements and returns the sum.
+     */
     public static  int getTotalBill(ArrayList<Integer> eachItemTotal){
         int totalBill = 0;
 
@@ -221,6 +282,10 @@ public class Customer {
         return totalBill;
     }
 
+    /**
+     * Method to get the outlets that are present in the DB.
+     * Returns a list of all the outlets.
+     */
     public static ArrayList getOutlets() {
 
         DBCollection vendorCollection = databaseLogin.getCollection("Vendors");

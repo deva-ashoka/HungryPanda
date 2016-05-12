@@ -1,10 +1,13 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" language="java"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" language="java" errorPage="Error.jsp" %>
 <%@ page import="process.*" %>
+<%
+    String check = (String) session.getAttribute("sessionVendor");
+    if (check != null) { %>
 <%
     String addItem = request.getParameter("item");
     String addPrice = request.getParameter("price");
     String sessionVendorString = session.getAttribute("sessionVendor").toString();
-    String sessionOutletString = Vendor.getOutletName(sessionVendorString);
+    String sessionOutletString = (String) session.getAttribute("sessionVendorOutletName");
 
     if (addItem == "" || addPrice == "") { %>
 <script> alert("Please enter  the details");</script>
@@ -23,5 +26,14 @@
     } else {
         Vendor.addToMenu(addItem, addPrice, sessionOutletString);
         response.sendRedirect("VendorHome.jsp");
+    }
+%>
+<%
+} else { %>
+<script>
+    alert("Please Login");
+    window.location = 'VendorLogin.jsp';
+</script>
+<%
     }
 %>

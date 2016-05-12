@@ -1,4 +1,12 @@
 <%@page contentType="text/html" language="java" pageEncoding="UTF-8" %>
+<%
+    String check = (String) session.getAttribute("sessionVendor");
+    if (check != null) { %>
+<script>
+    window.location = 'VendorHome.jsp';
+</script>
+<%
+} else { %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -85,3 +93,6 @@
 
 </body>
 </html>
+<%
+    }
+%>

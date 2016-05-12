@@ -1,6 +1,6 @@
-<%@page contentType="text/html" language="java" pageEncoding="UTF-8"
-        import="authenticate.*"
-%>
+<%@page import="authenticate.*" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" language="java" errorPage="Error.jsp" %>
+
 
 <%
     String nameString = request.getParameter("name");

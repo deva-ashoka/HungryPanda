@@ -5,6 +5,11 @@ import java.security.*;
 
 public class PasswordEncryption {
 
+    /**
+     * Method to hash the password
+     * Used during Sign Up  (hashed password is stored in DB).
+     * Used when the user enters the password to login.
+     */
     public static String MD5(String input) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");

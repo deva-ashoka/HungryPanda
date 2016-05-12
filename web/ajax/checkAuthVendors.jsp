@@ -33,16 +33,17 @@
             boolean emailVerified = ((GoogleIdToken.Payload) payload).getEmailVerified();
             String name = (String) payload.get("name");
 
+            //hardcoding the vendors
             List<String> vendorsArr = new ArrayList<>();
             vendorsArr.add("deva211196@gmail.com");
             String outletName = "";
+            if(email.equals("deva211196@gmail.com")){
+                outletName = "SugarJar";
+                }
 
             if (emailVerified) {
 
                 if (vendorsArr.contains(email)){
-                if(email == "deva211196@gmail.com"){
-                outletName = "SugarJar";
-                }
                 session.setAttribute("sessionVendor", email);
                 session.setAttribute("sessionVendorName", name);
                 session.setAttribute("sessionVendorOutletName", outletName);

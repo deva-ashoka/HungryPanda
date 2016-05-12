@@ -1,7 +1,10 @@
 <%@ page import="process.Customer" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="process.Vendor" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" language="java" errorPage="Error.jsp" %>
+<%
+    String check = (String) session.getAttribute("sessionCustomer");
+    if (check != null) { %>
 <html>
 <head>
     <link href="css/style.css" rel="stylesheet">
@@ -76,8 +79,17 @@
     <h3>
         <a href="CustomerHome.jsp">Home</a>
         <a href="CustomerOrders.jsp">My Orders</a>
-        <a href="index.jsp">Logout</a>
+        <a href="Logout.jsp">Logout</a>
     </h3>
 </div>
 </body>
 </html>
+<%
+} else { %>
+<script>
+    alert("Please Login");
+    window.location = 'CustomerLogin.jsp';
+</script>
+<%
+    }
+%>

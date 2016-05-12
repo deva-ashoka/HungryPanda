@@ -1,7 +1,10 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="process.Vendor" %>
 <%@ page import="java.util.Iterator" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" language="java" errorPage="Error.jsp" %>
+<%
+    String check = (String) session.getAttribute("sessionVendor");
+    if (check != null) { %>
 <html>
 <head>
     <link href="css/style.css" rel="stylesheet">
@@ -19,7 +22,7 @@
         <%
 
             String sessionVendorString = session.getAttribute("sessionVendor").toString();
-            String sessionOutletName = Vendor.getOutletName(sessionVendorString);
+            String sessionOutletName = (String) session.getAttribute("sessionVendorOutletName");
 
             ArrayList<String> customerUsernames = Vendor.getVendorOrdersCustomerUsername(sessionOutletName);
             ArrayList<String> customerOrderIDs = Vendor.getVendorOrdersCustomerOrderID(sessionOutletName);
@@ -108,10 +111,19 @@
         </div>
     <h2>
         <a href="VendorHome.jsp">Menu</a>
-        <a href="index.jsp">Logout</a>
+        <a href="Logout.jsp">Logout</a>
     </h2>
     </div>
 </div>
 
 </body>
 </html>
+<%
+} else { %>
+<script>
+    alert("Please Login");
+    window.location = 'VendorLogin.jsp';
+</script>
+<%
+    }
+%>

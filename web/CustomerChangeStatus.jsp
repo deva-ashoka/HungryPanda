@@ -1,6 +1,8 @@
 <%@ page import="process.Customer" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String check = (String) session.getAttribute("sessionCustomer");
+    if (check != null) { %>
 <html>
 <head>
     <title>Title</title>
@@ -20,3 +22,12 @@
 %>
 </body>
 </html>
+<%
+} else { %>
+<script>
+    alert("Please Login");
+    window.location = 'CustomerLogin.jsp';
+</script>
+<%
+    }
+%>

@@ -9,12 +9,11 @@
 </head>
 <body>
 <% session.removeAttribute("username");
-    session.removeAttribute("password");
     session.invalidate();
-%>
-<div class="jumbotron">
-    <h1>Successfully Logged out! Thank You!</h1>
-    <div>
-
+    %>
+<script>
+    alert("Logout Successful. Thank You for using HungryPanda");
+    window.location = 'index.jsp';
+</script>
 </body>
 </html>

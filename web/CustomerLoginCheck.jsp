@@ -1,4 +1,4 @@
-<%@page contentType="text/html" language="java" pageEncoding="UTF-8" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" language="java" errorPage="Error.jsp" %>
 <%@page import="authenticate.*" %>
 <%@ page import="process.Customer" %>
 <html>
@@ -6,9 +6,9 @@
     String usernameCheck = request.getParameter("username");
     String passwordCheck = request.getParameter("password");
 
-    int pass = LoginCheck.checkCustomerLogin(usernameCheck, passwordCheck);
+    boolean pass = LoginCheck.checkCustomerLogin(usernameCheck, passwordCheck);
 
-    if (pass == 1) {
+    if (pass) {
 
         session.setAttribute("sessionCustomer", usernameCheck);
         String customerName = Customer.getName(usernameCheck);

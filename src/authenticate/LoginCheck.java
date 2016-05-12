@@ -7,10 +7,13 @@ public class LoginCheck {
     static Mongo client = new Mongo();
     static DB database = client.getDB("Login");
 
+    /**
+     * Method to check the username and password of a customer.
+     * returns a boolean - true if the username and password are right, else false
+     */
+    public static boolean checkCustomerLogin(String username, String password) {
 
-    public static int checkCustomerLogin(String username, String password) {
-
-        int login;
+        boolean login;
         String hashPassword = PasswordEncryption.MD5(password);
 
         DBCollection customerCollection = database.getCollection("Customers");
@@ -25,16 +28,20 @@ public class LoginCheck {
         DBObject doc = customerCollection.findOne(query);
 
         if (doc != null) {
-            login = 1;
+            login = true;
         } else
-            login = 0;
+            login = false;
         return login;
 
     }
 
-    public static int checkVendorLogin(String username, String password){
+    /**
+     * Method to check the username and password of a vendor.
+     * returns a boolean - true if the username and password are right, else false
+     */
+    public static boolean checkVendorLogin(String username, String password){
 
-        int login;
+        boolean login;
         String hashPassword = PasswordEncryption.MD5(password);
 
         DBCollection vendorCollection = database.getCollection("Vendors");
@@ -48,9 +55,9 @@ public class LoginCheck {
         DBObject doc = vendorCollection.findOne(query);
 
         if (doc != null) {
-            login = 1;
+            login = true;
         } else
-            login = 0;
+            login = false;
         return login;
     }
 }

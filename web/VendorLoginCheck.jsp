@@ -5,9 +5,9 @@
     String usernameCheck = request.getParameter("username");
     String passwordCheck = request.getParameter("password");
 
-    int pass = LoginCheck.checkVendorLogin(usernameCheck, passwordCheck);
+    boolean pass = LoginCheck.checkVendorLogin(usernameCheck, passwordCheck);
 
-    if (pass == 1) {
+    if (pass) {
         session.setAttribute("sessionVendor", usernameCheck);
         String vendorName = Vendor.getVendorName(usernameCheck);
         String outletName = Vendor.getOutletName(usernameCheck);

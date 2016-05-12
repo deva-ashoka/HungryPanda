@@ -11,7 +11,10 @@ public class Vendor {
     static DB database = client.getDB("global");
     static DB databaseLogin = client.getDB("Login");
 
-
+    /**
+     * Method to change the status of an order in Customer's collection.
+     * Used when the vendor clicks the 'Order Ready' button in Vendor's Orders Page
+     */
     public static void changeStatusInCustomerMyOrdersPage(String customerUsername, String customerOrderID) {
 
         DBCollection Orders = database.getCollection(customerUsername + "MyOrders");
@@ -23,6 +26,10 @@ public class Vendor {
         Orders.update(query, update);
     }
 
+    /**
+     * Method to get the Delivery Status of each order from the Vendor's Orders Collection.
+     * Return a list containing each order's delivery status.
+     */
     public static ArrayList<String> getVendorOrdersDeliveryStatus(String sessionOutletName) {
 
         DBCollection Orders = database.getCollection(sessionOutletName + "Orders");
@@ -37,6 +44,10 @@ public class Vendor {
         return deliveryStatusArr;
     }
 
+    /**
+     * Method to get the Customer's username of each order from the Vendor's Orders Collection.
+     * Return a list containing each order's Customer Username.
+     */
     public static ArrayList<String> getVendorOrdersCustomerUsername(String sessionOutletName) {
 
         DBCollection Orders = database.getCollection(sessionOutletName + "Orders");
@@ -51,6 +62,10 @@ public class Vendor {
         return customerUsernameArr;
     }
 
+    /**
+     * Method to get the Customer's ObjectID of each order from the Vendor's Orders Collection.
+     * Return a list containing each order's Customer's ObjectID
+     */
     public static ArrayList<String> getVendorOrdersCustomerOrderID(String sessionOutletName) {
 
         DBCollection Orders = database.getCollection(sessionOutletName + "Orders");
@@ -65,7 +80,10 @@ public class Vendor {
         return orderIDArr;
     }
 
-
+    /**
+     * Method to get the Customer Details of each order from the Vendor's Orders Collection.
+     * Return a list containing each order's Customer Details.
+     */
     public static ArrayList<String> getVendorOrdersCustomers(String sessionOutletName) {
 
         DBCollection Orders = database.getCollection(sessionOutletName + "Orders");
@@ -80,6 +98,11 @@ public class Vendor {
         return customerArr;
     }
 
+    /**
+     * Method to get the Item Names of each order from the Vendor's Orders Collection.
+     * Return a list of lists containing each order's Item Names.
+     * Each order may have more than one item. Hence it is a list of lists.
+     */
     public static ArrayList<ArrayList<?>> getVendorOrdersItemNames(String sessionOutletName) {
 
         DBCollection Orders = database.getCollection(sessionOutletName + "Orders");
@@ -94,6 +117,11 @@ public class Vendor {
         return itemNamesArr;
     }
 
+    /**
+     * Method to get the Item Prices of each order from the Vendor's Orders Collection.
+     * Return a list of lists containing each order's Item Price.
+     * Each order may have more than one item. Hence it is a list of lists.
+     */
     public static ArrayList<ArrayList<?>> getVendorOrdersItemPrices(String sessionOutletName) {
 
         DBCollection Orders = database.getCollection(sessionOutletName + "Orders");
@@ -108,6 +136,11 @@ public class Vendor {
         return itemPricesArr;
     }
 
+    /**
+     * Method to get the Quantity of each order from the Vendor's Orders Collection.
+     * Return a list of lists containing each order's Quantity.
+     * Each order may have more than one item. Hence it is a list of lists.
+     */
     public static ArrayList<ArrayList<?>> getVendorOrdersQuantity(String sessionOutletName) {
 
         DBCollection Orders = database.getCollection(sessionOutletName + "Orders");
@@ -122,6 +155,11 @@ public class Vendor {
         return quantityArr;
     }
 
+    /**
+     * Method to get each item's total of each order from the Vendor's Orders Collection.
+     * Return a list of lists containing each order's item totals.
+     * Each order may have more than one item. Hence it is a list of lists.
+     */
     public static ArrayList<ArrayList<?>> getVendorOrdersItemTotal(String sessionOutletName) {
 
         DBCollection Orders = database.getCollection(sessionOutletName + "Orders");
@@ -136,6 +174,10 @@ public class Vendor {
         return itemTotalArr;
     }
 
+    /**
+     * Method to get total bill of each order from the Vendor's Orders Collection.
+     * Return a list containing each order's total bill.
+     */
     public static ArrayList<String> getVendorOrdersTotalBill(String sessionOutletName) {
 
         DBCollection Orders = database.getCollection(sessionOutletName + "Orders");
@@ -150,7 +192,11 @@ public class Vendor {
         return totalBillArr;
     }
 
-
+    /**
+     * Method to add an order to Vendor's Orders Collection.
+     * Used when the customer click on place order.
+     * Stores all the details in the collection.
+     */
     public static void addToVendorOrders(String selectedOutlet, String customerUsername, String customerOrderID, String customer, ArrayList<String> itemName, ArrayList<Integer> itemPrice, ArrayList<Integer> quantity, ArrayList<Integer> itemTotal, int totalBill) {
 
         DBCollection vendorOrderCollection = database.getCollection(selectedOutlet + "Orders");
@@ -160,6 +206,10 @@ public class Vendor {
 
     }
 
+    /**
+     * Method to get outlet name from a username of a vendor.
+     * Queries the DB with the username and return the outlet name of the vendor
+     */
     public static String getOutletName(String username) {
 
         String outletName;
@@ -174,6 +224,9 @@ public class Vendor {
         return outletName;
     }
 
+    /**
+     * Method to get Vendor's name from a username of a vendor.
+     */
     public static String getVendorName(String username) {
 
         String vendorName;
@@ -188,6 +241,10 @@ public class Vendor {
         return vendorName;
     }
 
+    /**
+     * Method to get all the item names in the menu of an outlet.
+     * Return a list of all the item names (strings).
+     */
     public static ArrayList getItemNames(String outletName) {
 
         DBCollection Menu = database.getCollection(outletName + "menu");
@@ -204,6 +261,10 @@ public class Vendor {
         return itemNameArr;
     }
 
+    /**
+     * Method to get all the item prices in the menu of an outlet.
+     * Return a list of all the item prices.
+     */
     public static ArrayList getItemPrices(String outletName) {
 
         DBCollection Menu = database.getCollection(outletName + "menu");
@@ -220,6 +281,10 @@ public class Vendor {
         return priceArr;
     }
 
+    /**
+     * Method to add an item to the menu of an outlet.
+     * Used when the Vendor clicks the Add button present in the homepage of the Vendor.
+     */
     public static void addToMenu(String itemName, String itemPrice, String outletName) {
 
         DBCollection Menu = database.getCollection(outletName + "menu");

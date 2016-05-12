@@ -6,10 +6,13 @@ public class SignUp {
     static Mongo client = new Mongo();
     static DB database = client.getDB("Login");
 
+    /**
+     * Method to store the Vendor Details entered in Sign Up page.
+     * The details are stored in a Mongo DB.
+     */
     public static void signUpVendor(String name, String username, String password, String mobile, String outletName){
 
-
-        String hashPassword = PasswordEncryption.MD5(password);
+        String hashPassword = PasswordEncryption.MD5(password); //hashing the password before storing in the db
 
         DBCollection vendorCollection = database.getCollection("Vendors");
 
@@ -18,6 +21,10 @@ public class SignUp {
 
         }
 
+    /**
+     * Method to check if the username that is entered in Vendor Sign up page already exists.
+     * Returns a boolean, true if it already exists and false it it does not
+     */
     public static boolean vendorUsernameAlreadyExists(String username){
 
         boolean check;
@@ -35,9 +42,13 @@ public class SignUp {
         return check;
     }
 
+    /**
+     * Method to store the Customer Details entered in Sign Up page.
+     * The details are stored in a Mongo DB.
+     */
     public static void signUpCustomer(String name, String username, String password, String mobile, String room){
 
-        String hashPassword = PasswordEncryption.MD5(password);
+        String hashPassword = PasswordEncryption.MD5(password); //hashing the password before storing it
 
         DBCollection customerCollection = database.getCollection("Customers");
 
@@ -46,6 +57,10 @@ public class SignUp {
 
     }
 
+    /**
+     * Method to check if the username that is entered in Customer Sign up page already exists.
+     * Returns a boolean, true if it already exists and false it it does not
+     */
     public static boolean customerUsernameAlreadyExists(String username){
 
         boolean check;
