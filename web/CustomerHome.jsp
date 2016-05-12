@@ -20,9 +20,9 @@
         <form action="CustomerOrder.jsp" method="post">
             <h1>
                 <%
-                    String sessionCustomerString = session.getAttribute("sessionCustomer").toString();
-                    String customerName = session.getAttribute("sessionCustomerName").toString();
-                    String customerMobile = session.getAttribute("sessionCustomerMobile").toString();
+                    String sessionCustomerString = (String) session.getAttribute("sessionCustomer");
+                    String customerName = (String) session.getAttribute("sessionCustomerName");
+                    String customerMobile = (String) session.getAttribute("sessionCustomerMobile");
 
                     out.println("Hello " + customerName);
                 %>

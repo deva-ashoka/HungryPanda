@@ -19,9 +19,9 @@
 
         <h1>
             <%
-                String sessionVendorString = session.getAttribute("sessionVendor").toString();
-                String vendorName = session.getAttribute("sessionVendorName").toString();
-                String outletName = session.getAttribute("sessionVendorOutletName").toString();
+                String sessionVendorString = (String) session.getAttribute("sessionVendor");
+                String vendorName = (String) session.getAttribute("sessionVendorName");
+                String outletName = (String) session.getAttribute("sessionVendorOutletName");
                 out.println("Hello " + outletName);
             %>
         </h1>

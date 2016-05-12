@@ -10,7 +10,7 @@
 <body>
 <% session.removeAttribute("username");
     session.invalidate();
-    %>
+%>
 <script>
     alert("Logout Successful. Thank You for using HungryPanda");
     window.location = 'index.jsp';

@@ -16,12 +16,12 @@
 
 <div class="jumbotron">
     <div class="container" align="center">
-            <h1>ORDERS</h1>
-            <br/>
+        <h1>ORDERS</h1>
+        <br/>
 
         <%
 
-            String sessionVendorString = session.getAttribute("sessionVendor").toString();
+            String sessionVendorString = (String) session.getAttribute("sessionVendor");
             String sessionOutletName = (String) session.getAttribute("sessionVendorOutletName");
 
             ArrayList<String> customerUsernames = Vendor.getVendorOrdersCustomerUsername(sessionOutletName);
@@ -108,12 +108,12 @@
             }
 
         %>
-        </div>
+    </div>
     <h2>
         <a href="VendorHome.jsp">Menu</a>
         <a href="Logout.jsp">Logout</a>
     </h2>
-    </div>
+</div>
 </div>
 
 </body>

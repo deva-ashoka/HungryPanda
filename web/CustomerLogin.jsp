@@ -6,7 +6,7 @@
     window.location = 'CustomerHome.jsp';
 </script>
 <%
-    } else { %>
+} else { %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -93,5 +93,5 @@
 </body>
 </html>
 <%
-}
+    }
 %>

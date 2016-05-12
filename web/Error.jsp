@@ -8,8 +8,8 @@
     <title>Error Page</title>
 </head>
 <body>
-<div class = "jumbotron" align="center">
-<h1> Error Occurred</h1>
+<div class="jumbotron" align="center">
+    <h1> Error Occurred</h1>
     <h2>
         <a href="index.jsp">Try Again </a>
     </h2>

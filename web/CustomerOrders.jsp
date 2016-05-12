@@ -20,7 +20,7 @@
         <br/>
         <%
 
-            String sessionCustomerUsername = session.getAttribute("sessionCustomer").toString();
+            String sessionCustomerUsername = (String) session.getAttribute("sessionCustomer");
 
             ArrayList<String> outlets = Customer.getCustomersOrdersOutlets(sessionCustomerUsername);
             ArrayList<String> vendorOrderIDs = Customer.getCustomerOrdersVendorOrderIDs(sessionCustomerUsername);

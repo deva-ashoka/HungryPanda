@@ -19,10 +19,10 @@
     </h1>
     <div class="container">
         <%
-            String sessionSelectedOutlet = session.getAttribute("sessionSelectedOutlet").toString();
-            String sessionCustomerUsername = session.getAttribute("sessionCustomer").toString();
-            String sessionCustomerName = session.getAttribute("sessionCustomerName").toString();
-            String sessionCustomerMobile = session.getAttribute("sessionCustomerMobile").toString();
+            String sessionSelectedOutlet = (String) session.getAttribute("sessionSelectedOutlet");
+            String sessionCustomerUsername = (String) session.getAttribute("sessionCustomer");
+            String sessionCustomerName = (String) session.getAttribute("sessionCustomerName");
+            String sessionCustomerMobile = (String) session.getAttribute("sessionCustomerMobile");
             String userDetails = sessionCustomerName + ", " + sessionCustomerMobile;
 
             String[] values = request.getParameterValues("items");

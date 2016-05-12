@@ -6,7 +6,7 @@
 <%
     String addItem = request.getParameter("item");
     String addPrice = request.getParameter("price");
-    String sessionVendorString = session.getAttribute("sessionVendor").toString();
+    String sessionVendorString = (String) session.getAttribute("sessionVendor");
     String sessionOutletString = (String) session.getAttribute("sessionVendorOutletName");
 
     if (addItem == "" || addPrice == "") { %>
@@ -18,7 +18,7 @@
 </head>
 <body>
 <h1>Hungry Panda</h1>
-<center><h2> <a href="VendorHome.jsp"> Home </a></h2>
+<center><h2><a href="VendorHome.jsp"> Home </a></h2>
 </center>
 </body>
 </html>
