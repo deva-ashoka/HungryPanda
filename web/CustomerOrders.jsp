@@ -82,15 +82,23 @@
         <%
             String orderStatus = statusItr.next();
             out.println("Order Status: " + orderStatus);
-
-
             String vendorOrderID = vendorOrderIDsItr.next();
         %>
+
         <br/>
         <form method="post" action="CustomerChangeStatus.jsp">
             <input type="hidden" name="outletName" value="<%=outlet%>">
             <input type="hidden" name="vendorOrderID" value="<%=vendorOrderID%>">
+            <%
+                if (orderStatus.equals("Ready")) { %>
             <input type="submit" id="mySubmit" value="Received">
+            <%
+            } else { %>
+            <input type="submit" id="mySubmit" value="Received" disabled>
+            <%
+
+                }
+            %>
         </form>
         <br/>
         <br/>

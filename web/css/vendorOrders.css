@@ -1,6 +1,7 @@
 .jumbotron {
     background-image: url('Order Leaves.jpg');
     background-size: cover;
+    height: 655px;
     max-width: 100%;
     overflow-x: hidden;
 
