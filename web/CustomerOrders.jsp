@@ -1,6 +1,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="process.Customer" %>
 <%@ page import="java.util.Iterator" %>
+<%@ page import="java.util.List" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java" errorPage="Error.jsp" %>
 <%
     String check = (String) session.getAttribute("sessionCustomer");
@@ -22,14 +23,14 @@
 
             String sessionCustomerUsername = (String) session.getAttribute("sessionCustomer");
 
-            ArrayList<String> outlets = Customer.getCustomersOrdersOutlets(sessionCustomerUsername);
-            ArrayList<String> vendorOrderIDs = Customer.getCustomerOrdersVendorOrderIDs(sessionCustomerUsername);
-            ArrayList<ArrayList<?>> itemNames = Customer.getCustomerOrdersItemNames(sessionCustomerUsername);
-            ArrayList<ArrayList<?>> itemPrices = Customer.getCustomerOrdersItemPrices(sessionCustomerUsername);
-            ArrayList<ArrayList<?>> quantity = Customer.getCustomerOrdersQuantity(sessionCustomerUsername);
-            ArrayList<ArrayList<?>> itemTotals = Customer.getCustomerOrdersItemTotal(sessionCustomerUsername);
-            ArrayList<String> totalBills = Customer.getCustomerOrdersTotalBill(sessionCustomerUsername);
-            ArrayList<String> status = Customer.getOrderStatus(sessionCustomerUsername);
+            List<String> outlets =  Customer.getCustomersOrdersOutlets(sessionCustomerUsername);
+            List<String> vendorOrderIDs = Customer.getCustomerOrdersVendorOrderIDs(sessionCustomerUsername);
+            List<List<?>> itemNames = Customer.getCustomerOrdersItemNames(sessionCustomerUsername);
+            List<List<?>> itemPrices = Customer.getCustomerOrdersItemPrices(sessionCustomerUsername);
+            List<List<?>> quantity = Customer.getCustomerOrdersQuantity(sessionCustomerUsername);
+            List<List<?>> itemTotals = Customer.getCustomerOrdersItemTotal(sessionCustomerUsername);
+            List<String> totalBills = Customer.getCustomerOrdersTotalBill(sessionCustomerUsername);
+            List<String> status = Customer.getOrderStatus(sessionCustomerUsername);
 
 
             Iterator<String> outletsItr = outlets.iterator();
@@ -53,16 +54,16 @@
         <br/>
         <%
 
-            ArrayList<?> namesInEachOrder = (ArrayList<?>) itemNamesItr.next();
+            List<?> namesInEachOrder = (List<?>) itemNamesItr.next();
             Iterator namesInEachOrderItr = namesInEachOrder.iterator();
 
-            ArrayList<?> pricesInEachOrder = (ArrayList<?>) itemPricesItr.next();
+            List<?> pricesInEachOrder = (List<?>) itemPricesItr.next();
             Iterator pricesInEachOrderItr = pricesInEachOrder.iterator();
 
-            ArrayList<?> quantityInEachOrder = (ArrayList<?>) quantityItr.next();
+            List<?> quantityInEachOrder = (List<?>) quantityItr.next();
             Iterator quantityInEachOrderItr = quantityInEachOrder.iterator();
 
-            ArrayList<?> itemTotalInEachOrder = (ArrayList<?>) itemTotalsItr.next();
+            List<?> itemTotalInEachOrder = (List<?>) itemTotalsItr.next();
             Iterator itemTotalInEachOrderItr = itemTotalInEachOrder.iterator();
 
             while (namesInEachOrderItr.hasNext() && pricesInEachOrderItr.hasNext() && quantityInEachOrderItr.hasNext()

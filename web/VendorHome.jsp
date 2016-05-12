@@ -2,6 +2,7 @@
 <%@page import="process.*" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Iterator" %>
+<%@ page import="java.util.List" %>
 <%
     String check = (String) session.getAttribute("sessionVendor");
     if (check != null) { %>
@@ -36,9 +37,9 @@
         <br/>
         <h3>
             <%
-                ArrayList menuItemNames = Vendor.getItemNames(outletName);
+                List <String> menuItemNames = Vendor.getItemNames(outletName);
                 Iterator<String> menuItr = menuItemNames.iterator();
-                ArrayList menuPrices = Vendor.getItemPrices(outletName);
+                List <String> menuPrices = Vendor.getItemPrices(outletName);
                 Iterator<String> menuPriceItr = menuPrices.iterator();
                 int i = 1;
                 while (menuItr.hasNext() && menuPriceItr.hasNext()) {

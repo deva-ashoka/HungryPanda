@@ -1,6 +1,7 @@
 <%@ page import="process.Customer" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="process.Vendor" %>
+<%@ page import="java.util.List" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java" errorPage="Error.jsp" %>
 <%
     String check = (String) session.getAttribute("sessionCustomer");
@@ -19,32 +20,34 @@
     </h1>
     <div class="container">
         <%
-            String sessionSelectedOutlet = (String) session.getAttribute("sessionSelectedOutlet");
-            String sessionCustomerUsername = (String) session.getAttribute("sessionCustomer");
-            String sessionCustomerName = (String) session.getAttribute("sessionCustomerName");
-            String sessionCustomerMobile = (String) session.getAttribute("sessionCustomerMobile");
-            String userDetails = sessionCustomerName + ", " + sessionCustomerMobile;
+            try { //for exception handling
+                String sessionSelectedOutlet = (String) session.getAttribute("sessionSelectedOutlet");
+                String sessionCustomerUsername = (String) session.getAttribute("sessionCustomer");
+                String sessionCustomerName = (String) session.getAttribute("sessionCustomerName");
+                String sessionCustomerMobile = (String) session.getAttribute("sessionCustomerMobile");
+                String userDetails = sessionCustomerName + ", " + sessionCustomerMobile;
 
-            String[] values = request.getParameterValues("items");
-            int totalBill = 0;
-            ArrayList<String> itemNamesOrder = new ArrayList();
-            ArrayList<Integer> itemPricesOrder = new ArrayList();
-            ArrayList<Integer> qty = new ArrayList();
-            ArrayList<Integer> itemTotal = new ArrayList();
+                String[] values = request.getParameterValues("items");
+                int totalBill = 0;
+                List<String> itemNamesOrder = new ArrayList<>();
+                List<Integer> itemPricesOrder = new ArrayList<>();
+                List<Integer> qty = new ArrayList<>();
+                List<Integer> itemTotal = new ArrayList<>();
 
-            if (values != null) {
-                for (String val : values) {
-                    String[] splitNamePrice = val.split(",");
-                    String itemName = splitNamePrice[0];
-                    String itemPriceString = splitNamePrice[1];
-                    String quantityString = request.getParameter(itemName);
-                    int quantity = Integer.parseInt(quantityString);
-                    int itemPrice = Integer.parseInt(itemPriceString);
-                    int eachItemTotal = Customer.getEachItemTotal(itemPrice, quantity);
-                    itemNamesOrder.add(itemName);
-                    itemPricesOrder.add(itemPrice);
-                    qty.add(quantity);
-                    itemTotal.add(eachItemTotal);
+                if (values != null) {
+                    for (String val : values) {
+                        String[] splitNamePrice = val.split(",");
+                        String itemName = splitNamePrice[0];
+                        String itemPriceString = splitNamePrice[1];
+                        String quantityString = request.getParameter(itemName);
+
+                        int quantity = Integer.parseInt(quantityString);
+                        int itemPrice = Integer.parseInt(itemPriceString);
+                        int eachItemTotal = Customer.getEachItemTotal(itemPrice, quantity);
+                        itemNamesOrder.add(itemName);
+                        itemPricesOrder.add(itemPrice);
+                        qty.add(quantity);
+                        itemTotal.add(eachItemTotal);
         %>
         <br/>
         <%
@@ -85,6 +88,13 @@
 </body>
 </html>
 <%
+} catch (NumberFormatException e) { //exception occurs if the quantity is not entered %>
+<script>
+    alert("Please enter the right quantity");
+    history.back();
+</script>
+<%
+    }
 } else { %>
 <script>
     alert("Please Login");

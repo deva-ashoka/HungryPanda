@@ -41,9 +41,9 @@
                 outletName = "SugarJar";
                 }
 
-            if (emailVerified) {
+            if (vendorsArr.contains(email)){
+                if (emailVerified) {
 
-                if (vendorsArr.contains(email)){
                 session.setAttribute("sessionVendor", email);
                 session.setAttribute("sessionVendorName", name);
                 session.setAttribute("sessionVendorOutletName", outletName);
@@ -51,6 +51,9 @@
                 o.put ("name", name);
                 o.put ("email", email);
                 }
+            } else {
+            o.put ("status", 1);
+            o.put ("error", "This account is not registered as a Vendor");
             }
 
           // String pictureUrl = (String) payload.get("picture");

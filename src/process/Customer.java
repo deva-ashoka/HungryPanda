@@ -4,6 +4,7 @@ import com.mongodb.*;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Customer {
 
@@ -74,12 +75,12 @@ public class Customer {
     /**
      * Method to get all the OrderIDs of Vendors stored in customer's MyOrders' collection.
      */
-    public static ArrayList<String> getCustomerOrdersVendorOrderIDs(String username) {
+    public static List<String> getCustomerOrdersVendorOrderIDs(String username) {
 
         DBCollection Orders = database.getCollection(username + "MyOrders");
         DBCursor cursorVendorOrderIDs = Orders.find();
 
-        ArrayList<String> vendorOrderIDsArr = new ArrayList<>();
+        List<String> vendorOrderIDsArr = new ArrayList<>();
 
         while (cursorVendorOrderIDs.hasNext()) {
             String outlet = (String) cursorVendorOrderIDs.next().get("Vendor Order ID");
@@ -91,12 +92,12 @@ public class Customer {
     /**
      * Method to get the Order Status of the orders from customer's MyOrders' Collection
      */
-    public static ArrayList<String> getOrderStatus(String username) {
+    public static List<String> getOrderStatus(String username) {
 
         DBCollection Orders = database.getCollection(username + "MyOrders");
         DBCursor cursorStatus = Orders.find();
 
-        ArrayList<String> statusArr = new ArrayList<>();
+        List<String> statusArr = new ArrayList<>();
 
         while (cursorStatus.hasNext()) {
             String outlet = (String) cursorStatus.next().get("Status");
@@ -108,12 +109,12 @@ public class Customer {
     /**
      * Method to get the Outlets from where the customer Ordered.
      */
-    public static ArrayList<String> getCustomersOrdersOutlets(String username) {
+    public static List<String> getCustomersOrdersOutlets(String username) {
 
         DBCollection Orders = database.getCollection(username + "MyOrders");
         DBCursor cursorCustomer = Orders.find();
 
-        ArrayList<String> outletArr = new ArrayList<>();
+        List<String> outletArr = new ArrayList<>();
 
         while (cursorCustomer.hasNext()) {
             String outlet = (String) cursorCustomer.next().get("Outlet");
@@ -126,12 +127,12 @@ public class Customer {
      * Method to get the Item Names of every Order the customer has placed.
      * Returns a list of lists - each order may contain multiple items.
      */
-    public static ArrayList<ArrayList<?>> getCustomerOrdersItemNames(String username) {
+    public static List<List<?>> getCustomerOrdersItemNames(String username) {
 
         DBCollection Orders = database.getCollection(username + "MyOrders");
         DBCursor cursorNames = Orders.find();
 
-        ArrayList<ArrayList<?>> itemNamesArr = new ArrayList<>();
+        List<List<?>> itemNamesArr = new ArrayList<>();
 
         while (cursorNames.hasNext()) {
             ArrayList<?> itemNames = (BasicDBList) cursorNames.next().get("Item Name");
@@ -144,12 +145,12 @@ public class Customer {
      * Method to get the Item Prices of every Order the customer has placed.
      * Returns a list of lists - each order may contain multiple items.
      */
-    public static ArrayList<ArrayList<?>> getCustomerOrdersItemPrices(String username) {
+    public static List<List<?>> getCustomerOrdersItemPrices(String username) {
 
         DBCollection Orders = database.getCollection(username + "MyOrders");
         DBCursor cursorPrices = Orders.find();
 
-        ArrayList<ArrayList<?>> itemPricesArr = new ArrayList<>();
+        List<List<?>> itemPricesArr = new ArrayList<>();
 
         while (cursorPrices.hasNext()) {
             ArrayList<?> itemPrices = (BasicDBList) cursorPrices.next().get("Item Price");
@@ -162,12 +163,12 @@ public class Customer {
      * Method to get the Quantity of every Order the customer has placed.
      * Returns a list of lists - each order may contain multiple items.
      */
-    public static ArrayList<ArrayList<?>> getCustomerOrdersQuantity(String username) {
+    public static List<List<?>> getCustomerOrdersQuantity(String username) {
 
         DBCollection Orders = database.getCollection(username + "MyOrders");
         DBCursor cursorQuantity = Orders.find();
 
-        ArrayList<ArrayList<?>> quantityArr = new ArrayList<>();
+        List<List<?>> quantityArr = new ArrayList<>();
 
         while (cursorQuantity.hasNext()) {
             ArrayList<?> quantity = (BasicDBList) cursorQuantity.next().get("Quantity");
@@ -180,12 +181,12 @@ public class Customer {
      * Method to get the each item's total of every Order the customer has placed.
      * Returns a list of lists - each order may contain multiple items.
      */
-    public static ArrayList<ArrayList<?>> getCustomerOrdersItemTotal(String username) {
+    public static List<List<?>> getCustomerOrdersItemTotal(String username) {
 
         DBCollection Orders = database.getCollection(username + "MyOrders");
         DBCursor cursorItemTotal = Orders.find();
 
-        ArrayList<ArrayList<?>> itemTotalArr = new ArrayList<>();
+        List<List<?>> itemTotalArr = new ArrayList<>();
 
         while (cursorItemTotal.hasNext()) {
             ArrayList<?> itemTotal = (BasicDBList) cursorItemTotal.next().get("Item Total");
@@ -198,12 +199,12 @@ public class Customer {
      * Method to get the total bill of every Order the customer has placed.
      * Returns a list of all the total bills
      */
-    public static ArrayList<String> getCustomerOrdersTotalBill(String username) {
+    public static List<String> getCustomerOrdersTotalBill(String username) {
 
         DBCollection Orders = database.getCollection(username + "MyOrders");
         DBCursor cursorTotalBill = Orders.find();
 
-        ArrayList<String> totalBillArr = new ArrayList<>();
+        List<String> totalBillArr = new ArrayList<>();
 
         while (cursorTotalBill.hasNext()) {
             String totalBill = cursorTotalBill.next().get("Total Bill").toString();
@@ -215,7 +216,7 @@ public class Customer {
     /**
      * Method to add an order to Customer's Orders' Collection.
      */
-    public static void addToCustomerOrders(String username, String outlet, ArrayList<String> itemName, ArrayList<Integer> itemPrice, ArrayList<Integer> quantity, ArrayList<Integer> itemTotal, int totalBill) {
+    public static void addToCustomerOrders(String username, String outlet, List<String> itemName, List<Integer> itemPrice, List<Integer> quantity, List<Integer> itemTotal, int totalBill) {
 
         DBCollection vendorOrderCollection = database.getCollection(username + "MyOrders");
 
@@ -273,7 +274,7 @@ public class Customer {
      * Method to calculate total bill of an order and return the total bill.
      * Take an arraylist as input and adds all the elements and returns the sum.
      */
-    public static  int getTotalBill(ArrayList<Integer> eachItemTotal){
+    public static  int getTotalBill(List<Integer> eachItemTotal){
         int totalBill = 0;
 
         for (int i=0; i<eachItemTotal.size(); i++){
@@ -286,7 +287,7 @@ public class Customer {
      * Method to get the outlets that are present in the DB.
      * Returns a list of all the outlets.
      */
-    public static ArrayList getOutlets() {
+    public static List <String> getOutlets() {
 
         DBCollection vendorCollection = databaseLogin.getCollection("Vendors");
 
@@ -295,7 +296,7 @@ public class Customer {
         field.put("Outlet", 1);
         DBCursor cursor = vendorCollection.find(query, field);
 
-        ArrayList outletArr = new ArrayList();
+        List <String> outletArr = new ArrayList<>();
         while (cursor.hasNext()) {
             BasicDBObject obj = (BasicDBObject) cursor.next();
             outletArr.add(obj.getString("Outlet"));

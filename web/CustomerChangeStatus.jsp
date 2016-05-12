@@ -1,5 +1,5 @@
 <%@ page import="process.Customer" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" language="java" errorPage="Error.jsp" %>
 <%
     String check = (String) session.getAttribute("sessionCustomer");
     if (check != null) { %>

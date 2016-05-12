@@ -1,6 +1,7 @@
 <%@ page import="process.Vendor" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Iterator" %>
+<%@ page import="java.util.List" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java" errorPage="Error.jsp" %>
 <%
     String check = (String) session.getAttribute("sessionCustomer");
@@ -23,10 +24,10 @@
                 String selectedOutlet = request.getParameter("selectedOutlet");
                 session.setAttribute("sessionSelectedOutlet", selectedOutlet);
 
-                ArrayList itemNames = Vendor.getItemNames(selectedOutlet);
+                List <String> itemNames = Vendor.getItemNames(selectedOutlet);
                 Iterator<String> itemNameItr = itemNames.iterator();
 
-                ArrayList itemPrices = Vendor.getItemPrices(selectedOutlet);
+                List <String> itemPrices = Vendor.getItemPrices(selectedOutlet);
                 Iterator<String> itemPriceItr = itemPrices.iterator();
 
                 while (itemNameItr.hasNext() && itemPriceItr.hasNext()) {

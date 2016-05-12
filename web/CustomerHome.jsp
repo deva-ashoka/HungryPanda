@@ -2,6 +2,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java" errorPage="Error.jsp" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Iterator" %>
+<%@ page import="java.util.List" %>
 
 <%
     String check = (String) session.getAttribute("sessionCustomer");
@@ -34,7 +35,7 @@
 
             <br/>
             <%
-                ArrayList outlets = Customer.getOutlets();
+                List <String> outlets = Customer.getOutlets();
                 outlets.add("SugarJar");
                 Iterator<String> outletItr = outlets.iterator();
                 while (outletItr.hasNext()) {

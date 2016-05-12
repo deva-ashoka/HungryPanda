@@ -9,8 +9,10 @@
     String sessionVendorString = (String) session.getAttribute("sessionVendor");
     String sessionOutletString = (String) session.getAttribute("sessionVendorOutletName");
 
-    if (addItem == "" || addPrice == "") { %>
-<script> alert("Please enter  the details");</script>
+    if (addItem.equals("") || addPrice.equals("")) { %>
+<script> alert("Please enter the details");
+    history.back();
+</script>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

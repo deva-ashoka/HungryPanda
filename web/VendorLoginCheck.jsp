@@ -1,6 +1,6 @@
 <%@page import="authenticate.*" %>
 <%@ page import="process.Vendor" %>
-<%@page contentType="text/html" language="java" pageEncoding="UTF-8" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" language="java" errorPage="Error.jsp" %>
 <%
     String usernameCheck = request.getParameter("username");
     String passwordCheck = request.getParameter("password");

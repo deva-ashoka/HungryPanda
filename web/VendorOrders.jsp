@@ -1,6 +1,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="process.Vendor" %>
 <%@ page import="java.util.Iterator" %>
+<%@ page import="java.util.List" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java" errorPage="Error.jsp" %>
 <%
     String check = (String) session.getAttribute("sessionVendor");
@@ -24,16 +25,16 @@
             String sessionVendorString = (String) session.getAttribute("sessionVendor");
             String sessionOutletName = (String) session.getAttribute("sessionVendorOutletName");
 
-            ArrayList<String> customerUsernames = Vendor.getVendorOrdersCustomerUsername(sessionOutletName);
-            ArrayList<String> customerOrderIDs = Vendor.getVendorOrdersCustomerOrderID(sessionOutletName);
+            List<String> customerUsernames = Vendor.getVendorOrdersCustomerUsername(sessionOutletName);
+            List<String> customerOrderIDs = Vendor.getVendorOrdersCustomerOrderID(sessionOutletName);
 
-            ArrayList<String> customerDetails = Vendor.getVendorOrdersCustomers(sessionOutletName);
-            ArrayList<ArrayList<?>> itemNames = Vendor.getVendorOrdersItemNames(sessionOutletName);
-            ArrayList<ArrayList<?>> itemPrices = Vendor.getVendorOrdersItemPrices(sessionOutletName);
-            ArrayList<ArrayList<?>> quantity = Vendor.getVendorOrdersQuantity(sessionOutletName);
-            ArrayList<ArrayList<?>> itemTotals = Vendor.getVendorOrdersItemTotal(sessionOutletName);
-            ArrayList<String> totalBills = Vendor.getVendorOrdersTotalBill(sessionOutletName);
-            ArrayList<String> deliveryStatus = Vendor.getVendorOrdersDeliveryStatus(sessionOutletName);
+            List<String> customerDetails = Vendor.getVendorOrdersCustomers(sessionOutletName);
+            List<List<?>> itemNames = Vendor.getVendorOrdersItemNames(sessionOutletName);
+            List<List<?>> itemPrices = Vendor.getVendorOrdersItemPrices(sessionOutletName);
+            List<List<?>> quantity = Vendor.getVendorOrdersQuantity(sessionOutletName);
+            List<List<?>> itemTotals = Vendor.getVendorOrdersItemTotal(sessionOutletName);
+            List<String> totalBills = Vendor.getVendorOrdersTotalBill(sessionOutletName);
+            List<String> deliveryStatus = Vendor.getVendorOrdersDeliveryStatus(sessionOutletName);
 
 
             Iterator<String> customerUsernamesItr = customerUsernames.iterator();
@@ -59,16 +60,16 @@
         <br/>
         <%
 
-            ArrayList<?> namesInEachOrder = (ArrayList<?>) itemNamesItr.next();
+            List<?> namesInEachOrder = (List<?>) itemNamesItr.next();
             Iterator namesInEachOrderItr = namesInEachOrder.iterator();
 
-            ArrayList<?> pricesInEachOrder = (ArrayList<?>) itemPricesItr.next();
+            List<?> pricesInEachOrder = (List<?>) itemPricesItr.next();
             Iterator pricesInEachOrderItr = pricesInEachOrder.iterator();
 
-            ArrayList<?> quantityInEachOrder = (ArrayList<?>) quantityItr.next();
+            List<?> quantityInEachOrder = (List<?>) quantityItr.next();
             Iterator quantityInEachOrderItr = quantityInEachOrder.iterator();
 
-            ArrayList<?> itemTotalInEachOrder = (ArrayList<?>) itemTotalsItr.next();
+            List<?> itemTotalInEachOrder = (List<?>) itemTotalsItr.next();
             Iterator itemTotalInEachOrderItr = itemTotalInEachOrder.iterator();
 
             while (namesInEachOrderItr.hasNext() && pricesInEachOrderItr.hasNext() && quantityInEachOrderItr.hasNext()
@@ -113,7 +114,6 @@
         <a href="VendorHome.jsp">Menu</a>
         <a href="Logout.jsp">Logout</a>
     </h2>
-</div>
 </div>
 
 </body>
